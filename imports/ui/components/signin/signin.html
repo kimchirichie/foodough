@@ -1,0 +1,10 @@
+<div class="container">
+	<h1>signin</h1>
+	<form ng-submit="signin.login(signin.user.email, signin.user.password)">
+		<label>email:</label>
+		<input type="text" name="email" placeholder="example@gmail.com" ng-model="signin.user.email">
+		<label>password:</label>
+		<input type="password" name="password" ng-model="signin.user.password">
+		<input type="submit" value="Sign in">
+	</form>
+</div>

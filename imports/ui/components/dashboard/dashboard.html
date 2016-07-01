@@ -1,0 +1,24 @@
+<div class="container">
+	<h1>dashboard</h1>
+
+	<a href="/submit">Add transaction</a>
+
+	<table>
+		<tr>
+			<th>Date</th>
+			<th>Amount</th>
+			<th>Category</th>
+			<th>Description</th>
+			<th>Payment Method</th>
+			<th>Edit</th>
+		</tr>
+		<tr ng-repeat="expense in dashboard.expenses">
+			<td>{{expense.date | date: 'MMM/d'}}</td>
+			<td>{{expense.amount | currency}}</td>
+			<td>{{expense.category}}</td>
+			<td>{{expense.description | limitTo: 15}}</td>
+			<td>{{expense.payment}}</td>
+			<td>edit</td>
+		</tr>
+	</table>
+</div>

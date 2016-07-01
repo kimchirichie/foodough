@@ -1,0 +1,29 @@
+.header{
+	background-color: $dark-grey;
+	margin-bottom: 50px;
+
+	.topNavBar {
+		width: 100%;
+		
+		.logo {
+			height: 50px;
+			padding: 5px;
+		}
+
+		div{
+			float: right;
+
+			a {
+				margin: 10px;
+				font-size: 15px;
+				cursor: pointer;
+				font-weight: bold;
+				color: $red;
+				
+				&:hover {
+					color: $grey;
+				}
+			}
+		}
+	}
+}

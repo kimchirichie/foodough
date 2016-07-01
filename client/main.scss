@@ -1,0 +1,30 @@
+//Variables
+$yellow: #FFCC11;
+$red: #f44d3c;
+$grey: #E0DFDB;
+$dark-grey: #2b2b2b;
+$black: #000000;
+$white: #FFFFFF;
+
+//Import all css files
+@import '../imports/ui/components/header/header.scss';
+@import '../imports/ui/components/footer/footer.scss';
+@import '../imports/ui/components/landing/landing.scss';
+@import '../imports/ui/components/signin/signin.scss';
+@import '../imports/ui/components/signup/signup.scss';
+@import '../imports/ui/components/dashboard/dashboard.scss';
+@import '../imports/ui/components/submit/submit.scss';
+// @import '../imports/ui/components/admin/admin.scss';
+// @import '../imports/ui/components/auth/auth.scss';
+// @import '../imports/ui/components/navigation/navBar.scss';
+// @import '../imports/ui/components/profile/profile.scss';
+// @import '../imports/ui/components/welcome/welcome.scss';
+// @import '../imports/ui/components/userBrowse/userBrowse.scss';
+// @import '../imports/ui/components/resetPage/resetPage.scss';
+// @import '../imports/ui/components/changePassword/changePassword.scss';
+// @import '../imports/ui/components/imageUploader/imageUploader.scss';
+
+
+body {
+	margin:0;
+}

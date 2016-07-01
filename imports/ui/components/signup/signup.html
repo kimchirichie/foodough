@@ -1,0 +1,12 @@
+<div class="container">
+	<h1>signup</h1>
+	<form ng-submit="signup.submit(signup.user)">
+		<label>email:</label>
+		<input type="text" name="email" placeholder="example@gmail.com" ng-model="signup.user.email">
+		<label>password:</label>
+		<input type="password" name="password" ng-model="signup.user.password">
+		<label>confirm:</label>
+		<input type="password" name="confirm" ng-model="signup.confirm">
+		<input type="submit" value="Sign up">
+	</form>
+</div>

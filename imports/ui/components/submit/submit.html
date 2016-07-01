@@ -1,0 +1,27 @@
+<div class="container">
+	<h1>submit</h1>
+	<a href="/dashboard">view dashboard</a>
+	<form ng-submit="submit.record(submit.expense)">
+		<label>Date</label>
+		<input type="date" name="date" ng-model="submit.expense.date">
+		<label>Amount</label>
+		<input type="number" name="amount" step="0.01" placeholder="9.99" ng-model="submit.expense.amount">
+		<label>Category</label>
+		<select ng-model="submit.expense.category">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+		</select>
+		<label>Payment</label>
+		<select ng-model="submit.expense.payment">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+		</select>
+		<label>Description</label>
+		<textarea placeholder="dinner at mels" ng-model="submit.expense.description"></textarea>
+		<input type="submit" value="Submit">
+	</form>	
+</div>
