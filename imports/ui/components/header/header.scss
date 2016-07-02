@@ -1,29 +1,37 @@
 .header{
 	background-color: $dark-grey;
-	margin-bottom: 50px;
 
-	.topNavBar {
-		width: 100%;
-		
-		.logo {
-			height: 50px;
-			padding: 5px;
+	.logo {
+		height:50px;
+		float: left;
+	}
+
+	ul {
+		display: inline-block;
+		float: right;
+		margin: 0px;
+	}
+	
+	li {
+		display: inline-block;
+		padding: 13px 10px 0 0;
+	}
+
+	a {
+		color: $white;
+		text-decoration: none;
+
+		&:hover{
+			color: $red;
+
 		}
+	}
 
-		div{
-			float: right;
+}
 
-			a {
-				margin: 10px;
-				font-size: 15px;
-				cursor: pointer;
-				font-weight: bold;
-				color: $red;
-				
-				&:hover {
-					color: $grey;
-				}
-			}
-		}
+
+@media (max-width: 750px) {
+	.header{
+		// display: none;
 	}
 }

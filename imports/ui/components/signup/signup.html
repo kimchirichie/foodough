@@ -1,12 +1,15 @@
 <div class="container">
-	<h1>signup</h1>
 	<form ng-submit="signup.submit(signup.user)">
-		<label>email:</label>
+		<h1>Sign up</h1>
+		<label>Email:</label>
 		<input type="text" name="email" placeholder="example@gmail.com" ng-model="signup.user.email">
-		<label>password:</label>
-		<input type="password" name="password" ng-model="signup.user.password">
-		<label>confirm:</label>
-		<input type="password" name="confirm" ng-model="signup.confirm">
-		<input type="submit" value="Sign up">
+		<label>Password:</label>
+		<input type="password" name="password" placeholder="********" ng-model="signup.user.password">
+		<label>Confirm:</label>
+		<input type="password" name="confirm" placeholder="********" ng-model="signup.confirm">
+		<br>
+		<input type="submit" class="button-primary" value="Sign up">
+		<p>or you can..</p>
+		<a class="button" href="/signin">Sign in</a>
 	</form>
 </div>

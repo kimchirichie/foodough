@@ -1,24 +1,27 @@
-<div class="container">
-	<h1>dashboard</h1>
+<div class="dashboard">
+	<div class="container">
+		<h1>dashboard</h1>
+		<hr>
+		<a class="button button-primary" href="/submit">Add transaction</a>
 
-	<a href="/submit">Add transaction</a>
-
-	<table>
-		<tr>
-			<th>Date</th>
-			<th>Amount</th>
-			<th>Category</th>
-			<th>Description</th>
-			<th>Payment Method</th>
-			<th>Edit</th>
-		</tr>
-		<tr ng-repeat="expense in dashboard.expenses">
-			<td>{{expense.date | date: 'MMM/d'}}</td>
-			<td>{{expense.amount | currency}}</td>
-			<td>{{expense.category}}</td>
-			<td>{{expense.description | limitTo: 15}}</td>
-			<td>{{expense.payment}}</td>
-			<td>edit</td>
-		</tr>
-	</table>
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>Amount</th>
+				<th class="big">Category</th>
+				<th>Description</th>
+				<th class="big">Payment Method</th>
+				<th class="right">Edit</th>
+			</tr>
+			<tr ng-repeat="expense in dashboard.expenses">
+				<td>{{expense.date | date: 'MMM/d'}}</td>
+				<!-- <td>{{expense.amount | currency | limitTo: 8}}{{expense.amount.toString().length > 8 ? '...' : ''}}</td> -->
+				<td>{{expense.amount > 999.99 ? 999.99 : expense.amount | currency }}{{expense.amount > 999.99 ? '+' : ''}}</td>
+				<td class="big">{{expense.category}}</td>
+				<td>{{expense.description | limitTo: 12}}{{expense.description.length > 12 ? '...' : ''}}</td>
+				<td class="big">{{expense.payment}}</td>
+				<td><a href="#"><img class="edit" src="/images/edit.svg"></a></td>
+			</tr>
+		</table>
+	</div>
 </div>

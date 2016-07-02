@@ -8,23 +8,32 @@ class Signin {
 
 	constructor($scope, $reactive, $state, $rootScope, $timeout){
 		'ngInject';
-
+		console.log('init: signin controller');
 		$reactive(this).attach($scope);
 		this.state = $state;
 		this.rootScope = $rootScope;
-		this.wait = false;
 		this.timeout = $timeout;
+		this.loading = false;
+		this.rootScope.$watch('currentUser',function(){
+			console.log('currentUser changed');
+			this.boot();
+		}.bind(this))
+	}
+
+	boot(){
+		if(this.rootScope.currentUser){this.state.go('dashboard');}
 	}
 
 	login(email, pass){
-		this.wait = true;
+		console.log('login method');
+		this.loading = true;
 		Meteor.loginWithPassword(email, pass, function(error){
 			if (error){
 				Bert.alert(error.reason, 'danger');
-				this.timeout(function(){this.wait = false;}.bind(this), 1300);
+				this.timeout(function(){this.loading = false;}.bind(this), 1300);
 			} else {
 				this.state.go('dashboard');
-				this.wait = false;
+				this.loading = false;
 			}
 		}.bind(this));
 	}

@@ -5,39 +5,51 @@ import uiRouter from 'angular-ui-router';
 import template from './signup.html';
 
 class Signup {
-constructor($scope, $reactive, $state, $timeout){
+constructor($scope, $reactive, $state, $rootScope, $timeout){
 		'ngInject';
+		console.log('init: signup controller');
 		$reactive(this).attach($scope);
+		if($rootScope.currentUser){$state.go('dashboard');}
 		this.state = $state;
-		this.wait = false;
+		this.rootScope = $rootScope;
 		this.timeout = $timeout;
+		this.loading = false;
+		this.rootScope.$watch('currentUser',function(){
+			console.log('currentUser changed');
+			this.boot();
+		}.bind(this))
+
+	}
+
+	boot(){
+		if(this.rootScope.currentUser){this.state.go('dashboard');}
 	}
 
 	submit(user){
 
-		this.wait = true;
+		this.loading = true;
 
 		if (this.confirm !== user.password){
 			Bert.alert('Your password does not match', 'danger');
 			user.password = '';
 			this.confirm = '';
-			this.timeout(function(){this.wait = false;}.bind(this), 1300);
+			this.timeout(function(){this.loading = false;}.bind(this), 1300);
 			return;
 		}
 
 		Accounts.createUser(user, function(error){
 			if(error) {
 				Bert.alert(error.reason, 'danger');
-				this.timeout(function(){this.wait = false;}.bind(this), 1300);
+				this.timeout(function(){this.loading = false;}.bind(this), 1300);
 			} else {
 				Meteor.call('sendVerificationLink', function(error, response){
 					if(error){
 						// need emailer to send emails
 						Bert.alert(error.reason, 'danger');
-						this.timeout(function(){this.wait = false;}.bind(this), 1300);
+						this.timeout(function(){this.loading = false;}.bind(this), 1300);
 					} else {
 						user = {};
-						this.wait = false;
+						this.loading = false;
 						this.state.go('welcome');
 						Bert.alert('Verification email sent!', 'success');
 						Meteor.logout();

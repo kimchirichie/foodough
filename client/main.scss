@@ -1,6 +1,7 @@
 //Variables
 $yellow: #FFCC11;
 $red: #f44d3c;
+$blue: #33C3F0;
 $grey: #E0DFDB;
 $dark-grey: #2b2b2b;
 $black: #000000;
@@ -27,4 +28,37 @@ $white: #FFFFFF;
 
 body {
 	margin:0;
+}
+
+
+form {
+
+	h1{
+		text-align: center;
+		margin-bottom: 0;
+	}
+	
+	hr{
+		margin-top: 10px;
+	}
+
+	input, a {
+		width: 100%;
+	}
+}
+
+@media (min-width: 750px) {
+
+	form {
+		background: rgba(220, 220, 220, 0.19);	
+		padding: 30px;
+		margin: 50px auto;
+		border: solid thin black;
+		border-radius: 6px;
+		border-color: grey;
+		max-width: 60%;
+		-moz-box-shadow:    3px 3px 3px 4px #ccc;
+		-webkit-box-shadow: 3px 3px 3px 4px #ccc;
+		box-shadow:         3px 3px 3px 4px #ccc;
+	}
 }

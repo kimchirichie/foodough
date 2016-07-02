@@ -1,0 +1,33 @@
+.landing {
+	text-align: center;
+
+	.title {
+		padding-top: 30vh;
+	}
+
+	.intro{
+		padding: 20px 0 20px 0;
+	}
+
+	.splash {
+		background-image: url('/images/bg.jpg');
+		background-repeat: no-repeat;
+		position: relative;
+		height: 100vh;
+		margin: 0;
+		
+		a {
+			margin: 0 10px;
+		}
+
+		.signup {
+			color: $blue;
+			border-color:$blue;
+		}
+
+		.signin {
+			color: $red;
+			border-color: $red;
+		}
+	}
+}

@@ -1,0 +1,39 @@
+.dashboard{
+
+	.button{
+		width: 100%;
+	}
+
+	h1{
+		text-align: center;
+		margin-bottom: 0;
+	}
+	
+	hr{
+		margin-top: 10px;
+	}
+
+	table{
+		width:100%;
+
+		th, td{
+			padding: 5px 5px;
+		}
+	}
+
+	.right {
+		text-align: right;
+
+	}	
+	.edit{
+		float: right;
+		width: 25px;
+	}
+}
+
+@media (max-width: 750px){
+
+	.big{
+		display:none;
+	}
+}
