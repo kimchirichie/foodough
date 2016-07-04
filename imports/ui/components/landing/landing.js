@@ -8,18 +8,16 @@ class Landing {
 
 	constructor($scope, $reactive, $state, $rootScope){
 		'ngInject';
-		console.log('init: landing controller');
 		$reactive(this).attach($scope);
 		this.state = $state;
 		this.rootScope = $rootScope;
 		this.rootScope.$watch('currentUser',function(){
-			console.log('currentUser changed');
 			this.boot();
 		}.bind(this))
 	}
 
 	boot(){
-		if(this.rootScope.currentUser){this.state.go('dashboard');}
+		if(this.rootScope.currentUser){this.state.go('submit');}
 	}
 }
 

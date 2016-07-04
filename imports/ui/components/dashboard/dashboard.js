@@ -19,7 +19,6 @@ class Dashboard {
 			}
 		});
 		this.rootScope.$watch('currentUser',function(){
-			console.log('currentUser changed');
 			this.boot();
 		}.bind(this));
 	}

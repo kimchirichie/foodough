@@ -2,11 +2,11 @@
 	<form ng-submit="signup.submit(signup.user)">
 		<h1>Sign up</h1>
 		<label>Email:</label>
-		<input type="text" name="email" placeholder="example@gmail.com" ng-model="signup.user.email">
+		<input type="text" name="email" placeholder="example@gmail.com" ng-model="signup.user.email" required>
 		<label>Password:</label>
-		<input type="password" name="password" placeholder="********" ng-model="signup.user.password">
+		<input type="password" name="password" placeholder="********" ng-model="signup.user.password" required>
 		<label>Confirm:</label>
-		<input type="password" name="confirm" placeholder="********" ng-model="signup.confirm">
+		<input type="password" name="confirm" placeholder="********" ng-model="signup.confirm" required>
 		<br>
 		<input type="submit" class="button-primary" value="Sign up">
 		<p>or you can..</p>

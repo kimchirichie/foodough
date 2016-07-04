@@ -1,8 +1,8 @@
 <div class="dashboard">
 	<div class="container">
-		<h1>dashboard</h1>
+		<h1>Dashboard</h1>
 		<hr>
-		<a class="button button-primary" href="/submit">Add transaction</a>
+		<a class="button button-primary" ui-sref="submit">Add transaction</a>
 
 		<table>
 			<tr>
@@ -13,15 +13,19 @@
 				<th class="big">Payment Method</th>
 				<th class="right">Edit</th>
 			</tr>
-			<tr ng-repeat="expense in dashboard.expenses">
+			<tr ng-show="dashboard.expenses.length" ng-repeat="expense in dashboard.expenses">
 				<td>{{expense.date | date: 'MMM/d'}}</td>
 				<!-- <td>{{expense.amount | currency | limitTo: 8}}{{expense.amount.toString().length > 8 ? '...' : ''}}</td> -->
 				<td>{{expense.amount > 999.99 ? 999.99 : expense.amount | currency }}{{expense.amount > 999.99 ? '+' : ''}}</td>
 				<td class="big">{{expense.category}}</td>
 				<td>{{expense.description | limitTo: 12}}{{expense.description.length > 12 ? '...' : ''}}</td>
 				<td class="big">{{expense.payment}}</td>
-				<td><a href="#"><img class="edit" src="/images/edit.svg"></a></td>
+				<td><a ui-sref="submit({transaction_id : expense._id})"><img class="edit" src="/images/edit.svg"></a></td>
 			</tr>
 		</table>
+		<span class="empty" ng-hide="dashboard.expenses.length">
+			<p><b>no transactions yet.</b> submit one</p>
+			<a class="button" ui-sref="submit">here</a>
+		</span>
 	</div>
 </div>

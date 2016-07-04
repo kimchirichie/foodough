@@ -7,33 +7,71 @@ import { Meteor } from 'meteor/meteor';
 import { Expenses } from '../../../api/expenses/index';
 
 class Submit {
-	constructor($scope, $reactive, $state, $rootScope){
+	constructor($scope, $reactive, $state, $rootScope, $stateParams){
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.state = $state;
 		this.rootScope = $rootScope;
-		this.clear();
+		this.subscribe('expenses');
+		this.transaction_id = undefined;
+		this.helpers({
+			expense: () => Expenses.findOne({_id: this.getReactively('transaction_id')})
+		});
 		this.rootScope.$watch('currentUser',function(){
-			console.log('currentUser changed');
 			this.boot();
 		}.bind(this))
+		this.clear();
+		if($stateParams.transaction_id){
+			this.transaction_id = $stateParams.transaction_id;
+		}
 	}
 
 	boot(){
-		if(!this.rootScope.currentUser){this.state.go('signin');}
+		if(!this.rootScope.currentUser) this.state.go('signin');
 	}
 
-
 	record(expense){
-		Expenses.insert(expense);
-		console.log(expense);
+		if (this.expense._id){
+			this.update(expense);
+		} else {
+			this.insert(expense);
+		}
 		this.clear();
 		this.state.go('dashboard');
 	}
+
+	insert(expense){
+		Expenses.insert(expense);
+	}
+
+	update(expense){
+		if(this.expense) {
+			Expenses.update(this.expense._id, {
+				$set: {
+					date: this.expense.date,
+					amount: this.expense.amount,
+					category: this.expense.category,
+					payment: this.expense.payment,
+					description: this.expense.description
+				}
+			})
+		}
+	}
+
+	remove() {
+		if (this.expense && confirm('Are you sure?')) {
+			Expenses.remove(this.expense._id);
+			this.clear();
+			this.state.go('dashboard');
+		}
+	}
+
 	clear(){
 		this.expense = {}
-		this.expense.userId = Meteor.userId();
+		this.expense.category = 'dining';
+		this.expense.payment = 'cash';
 		this.expense.date = new Date()
+		if (this.rootScope.currentUser) this.expense.userId = this.rootScope.currentUser._id;
 	}
 }
 
@@ -53,7 +91,7 @@ export default angular.module(name, [
 function config($stateProvider) {
 	'ngInject';
 	$stateProvider.state('submit', {
-		url: '/submit',
+		url: '/submit/:transaction_id',
 		template: '<submit></submit>'
 	});
 }

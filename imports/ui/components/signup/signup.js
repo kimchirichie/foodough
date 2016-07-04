@@ -5,24 +5,22 @@ import uiRouter from 'angular-ui-router';
 import template from './signup.html';
 
 class Signup {
-constructor($scope, $reactive, $state, $rootScope, $timeout){
+
+	constructor($scope, $reactive, $state, $rootScope, $timeout){
 		'ngInject';
-		console.log('init: signup controller');
 		$reactive(this).attach($scope);
-		if($rootScope.currentUser){$state.go('dashboard');}
 		this.state = $state;
 		this.rootScope = $rootScope;
 		this.timeout = $timeout;
 		this.loading = false;
 		this.rootScope.$watch('currentUser',function(){
-			console.log('currentUser changed');
 			this.boot();
 		}.bind(this))
 
 	}
 
 	boot(){
-		if(this.rootScope.currentUser){this.state.go('dashboard');}
+		if(this.rootScope.currentUser){this.state.go('submit');}
 	}
 
 	submit(user){

@@ -8,20 +8,18 @@ class Signin {
 
 	constructor($scope, $reactive, $state, $rootScope, $timeout){
 		'ngInject';
-		console.log('init: signin controller');
 		$reactive(this).attach($scope);
 		this.state = $state;
 		this.rootScope = $rootScope;
 		this.timeout = $timeout;
 		this.loading = false;
 		this.rootScope.$watch('currentUser',function(){
-			console.log('currentUser changed');
 			this.boot();
 		}.bind(this))
 	}
 
 	boot(){
-		if(this.rootScope.currentUser){this.state.go('dashboard');}
+		if(this.rootScope.currentUser){this.state.go('submit');}
 	}
 
 	login(email, pass){

@@ -1,19 +1,14 @@
 .dashboard{
 
-	.button{
+	.button {
 		width: 100%;
 	}
 
-	h1{
-		text-align: center;
-		margin-bottom: 0;
-	}
-	
-	hr{
+	hr {
 		margin-top: 10px;
 	}
 
-	table{
+	table {
 		width:100%;
 
 		th, td{
@@ -25,9 +20,13 @@
 		text-align: right;
 
 	}	
-	.edit{
+	.edit {
 		float: right;
 		width: 25px;
+	}
+
+	.empty {
+		text-align: center;
 	}
 }
 

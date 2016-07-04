@@ -6,7 +6,6 @@ import template from './header.html';
 class Header {
 	constructor($scope, $reactive, $state, $rootScope){
 		'ngInject';
-		console.log('init: header controller');
 		$reactive(this).attach($scope);
 		this.rootScope = $rootScope;
 	}

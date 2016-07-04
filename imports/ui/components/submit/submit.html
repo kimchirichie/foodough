@@ -1,27 +1,56 @@
 <div class="container">
-	<h1>submit</h1>
-	<a href="/dashboard">view dashboard</a>
-	<form ng-submit="submit.record(submit.expense)">
-		<label>Date</label>
-		<input type="date" name="date" ng-model="submit.expense.date">
-		<label>Amount</label>
-		<input type="number" name="amount" step="0.01" placeholder="9.99" ng-model="submit.expense.amount">
-		<label>Category</label>
-		<select ng-model="submit.expense.category">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-		</select>
-		<label>Payment</label>
-		<select ng-model="submit.expense.payment">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-		</select>
-		<label>Description</label>
-		<textarea placeholder="dinner at mels" ng-model="submit.expense.description"></textarea>
-		<input type="submit" value="Submit">
-	</form>	
+	<div class="submitform">
+		<form ng-submit="submit.record(submit.expense)">
+			<h1>Foodough</h1>
+			<hr>
+			<label>Date:</label>
+			<input type="date" name="date" ng-model="submit.expense.date" required>
+			<label>Amount:</label>
+			<input type="number" name="amount" step="0.01" placeholder="9.99" ng-model="submit.expense.amount" required autofocus>
+			<label>Category:</label>
+			<select ng-model="submit.expense.category" >
+				<option>work</option>
+				<option>refund</option>
+				<option>other income</option>
+				<option>dining</option>
+				<option>leisure</option>
+				<option>living</option>
+				<option>transportation</option>
+				<option>health</option>
+				<option>education</option>
+				<option>service</option>
+				<option>electronics</option>
+				<option>gift</option>
+				<option>donation</option>
+			</select>
+			<label>Payment:</label>
+			<select ng-model="submit.expense.payment">
+				<option>cash</option>
+				<option>debit</option>
+				<option>credit</option>
+			</select>
+			<label>Description:</label>
+			<textarea placeholder="dinner at mels" ng-model="submit.expense.description"></textarea>
+			<input class="button-primary" type="submit" value="Submit" required>
+			<a class="button delete" ng-show="submit.expense._id" ng-click="submit.remove()">Delete</a>
+			<a class="button" href="/dashboard">Cancle</a>
+		</form>	
+	</div>
 </div>
+
+<!-- <div class="container">
+	<div class="userform">
+		<form ng-submit="signin.login(signin.user.email, signin.user.password)">
+			<h1>Sign in</h1>
+			<hr>
+			<label>Email:</label>
+			<input type="text" name="email" placeholder="example@gmail.com" ng-model="signin.user.email">
+			<label>Password:</label>
+			<input type="password" name="password" placeholder="********" ng-model="signin.user.password">
+			<br>
+			<input type="submit" class="button-primary" value="Sign in">
+			<p>or you can..</p>
+			<a class="button" href="/signup">Sign up</a>
+		</form>
+	</div>
+</div> -->

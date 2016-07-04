@@ -15,34 +15,24 @@ $white: #FFFFFF;
 @import '../imports/ui/components/signup/signup.scss';
 @import '../imports/ui/components/dashboard/dashboard.scss';
 @import '../imports/ui/components/submit/submit.scss';
-// @import '../imports/ui/components/admin/admin.scss';
-// @import '../imports/ui/components/auth/auth.scss';
-// @import '../imports/ui/components/navigation/navBar.scss';
-// @import '../imports/ui/components/profile/profile.scss';
-// @import '../imports/ui/components/welcome/welcome.scss';
-// @import '../imports/ui/components/userBrowse/userBrowse.scss';
-// @import '../imports/ui/components/resetPage/resetPage.scss';
-// @import '../imports/ui/components/changePassword/changePassword.scss';
-// @import '../imports/ui/components/imageUploader/imageUploader.scss';
-
 
 body {
 	margin:0;
 }
 
+h1{
+	text-align: center;
+	margin: 10px 0 15px 0;
+}
 
 form {
 
-	h1{
-		text-align: center;
-		margin-bottom: 0;
-	}
 	
 	hr{
 		margin-top: 10px;
 	}
 
-	input, a {
+	input, a, select, textarea {
 		width: 100%;
 	}
 }
