@@ -29,3 +29,6 @@ themeteorchef:bert
 ### ACCOUNT ###
 accounts-password
 email
+
+### PUBLISH TOOL ###
+tmeasday:publish-counts

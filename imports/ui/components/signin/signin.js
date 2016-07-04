@@ -19,7 +19,7 @@ class Signin {
 	}
 
 	boot(){
-		if(this.rootScope.currentUser){this.state.go('submit');}
+		if(this.rootScope.currentUser){this.state.go('dashboard');}
 	}
 
 	login(email, pass){

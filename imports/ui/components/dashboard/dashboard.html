@@ -3,17 +3,17 @@
 		<h1>Dashboard</h1>
 		<hr>
 		<a class="button button-primary" ui-sref="submit">Add transaction</a>
-
+		<input type="search" ng-model="dashboard.searchText" placeholder="Search" />
 		<table>
 			<tr>
-				<th>Date</th>
+				<th><a ng-click="dashboard.sortChanged()">Date</a></th>
 				<th>Amount</th>
 				<th class="big">Category</th>
 				<th>Description</th>
 				<th class="big">Payment Method</th>
 				<th class="right">Edit</th>
 			</tr>
-			<tr ng-show="dashboard.expenses.length" ng-repeat="expense in dashboard.expenses">
+			<tr ng-show="dashboard.expenses.length" dir-paginate="expense in dashboard.expenses | itemsPerPage: dashboard.perPage" total-items="dashboard.expensesCount">
 				<td>{{expense.date | date: 'MMM/d'}}</td>
 				<!-- <td>{{expense.amount | currency | limitTo: 8}}{{expense.amount.toString().length > 8 ? '...' : ''}}</td> -->
 				<td>{{expense.amount > 999.99 ? 999.99 : expense.amount | currency }}{{expense.amount > 999.99 ? '+' : ''}}</td>
@@ -23,6 +23,7 @@
 				<td><a ui-sref="submit({transaction_id : expense._id})"><img class="edit" src="/images/edit.svg"></a></td>
 			</tr>
 		</table>
+		<dir-pagination-controls on-page-change="dashboard.pageChanged(newPageNumber)"></dir-pagination-controls>
 		<span class="empty" ng-hide="dashboard.expenses.length">
 			<p><b>no transactions yet.</b> submit one</p>
 			<a class="button" ui-sref="submit">here</a>
