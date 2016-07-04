@@ -10,7 +10,6 @@ import { Expenses } from '../../../api/expenses/index';
 class Dashboard {
 	constructor($scope, $reactive, $state, $rootScope){
 		'ngInject';
-
 		$reactive(this).attach($scope);
 		this.state = $state;
 		this.rootScope = $rootScope;
