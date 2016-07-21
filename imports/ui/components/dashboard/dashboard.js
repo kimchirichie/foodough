@@ -11,6 +11,7 @@ class Dashboard {
 	constructor($scope, $reactive, $state, $rootScope){
 		'ngInject';
 		$reactive(this).attach($scope);
+		console.log('dashboard constructor');
 		this.state = $state;
 		this.rootScope = $rootScope;
 		this.perPage = 20;
@@ -35,8 +36,10 @@ class Dashboard {
 		});
 
 		this.rootScope.$watch('currentUser',function(){
+			console.log('dashboard user watch');
 			this.boot();
 		}.bind(this));
+
 		// $(window).bind('scroll', this.scroll);
 	}
 

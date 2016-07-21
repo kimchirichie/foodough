@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { Expenses } from '../imports/api/expenses/index';
+import { Expenses } from '../imports/api/expenses';
+import { Single } from '../imports/api/single';
 
 Meteor.startup(() => {
 	Accounts.emailTemplates.verifyEmail.header = function(user, url) {
@@ -29,7 +30,7 @@ Meteor.startup(() => {
 
 	// 		data.category = expense.category;
 	// 		data.payment = expense.payment_method;
-	// 		data.date = new Date(Date.UTC(date[0],date[1],date[2],4));
+	// 		data.date = new Date(Date.UTC(date[0],date[1]-1,date[2],4));
 	// 		data.userId = Meteor.users.findOne({"emails.address": "sinr0202@gmail.com"})._id;
 	// 		data.amount = Math.abs(Number(expense.amount));
 	// 		data.description = expense.description;

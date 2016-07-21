@@ -33,24 +33,7 @@
 			<textarea placeholder="dinner at mels" ng-model="submit.expense.description"></textarea>
 			<input class="button-primary" type="submit" value="Submit" required>
 			<a class="button delete" ng-show="submit.expense._id" ng-click="submit.remove()">Delete</a>
-			<a class="button" href="/dashboard">Cancle</a>
+			<a class="button" ui-sref="dashboard">Cancle</a>
 		</form>	
 	</div>
 </div>
-
-<!-- <div class="container">
-	<div class="userform">
-		<form ng-submit="signin.login(signin.user.email, signin.user.password)">
-			<h1>Sign in</h1>
-			<hr>
-			<label>Email:</label>
-			<input type="text" name="email" placeholder="example@gmail.com" ng-model="signin.user.email">
-			<label>Password:</label>
-			<input type="password" name="password" placeholder="********" ng-model="signin.user.password">
-			<br>
-			<input type="submit" class="button-primary" value="Sign in">
-			<p>or you can..</p>
-			<a class="button" href="/signup">Sign up</a>
-		</form>
-	</div>
-</div> -->

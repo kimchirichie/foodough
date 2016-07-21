@@ -1,9 +1,9 @@
 <div class="header">
 	<div class="topNavBar container">
-		<a href="/"/><img class="logo" src="/images/foodough.svg"></a>
+		<a ui-sref="dashboard"/><img class="logo" src="/images/foodough.svg"></a>
 		<ul>
 			<li ng-show="header.rootScope.currentUser"><a ng-click="header.signout()">sign out</a></li>
-			<li ng-hide="header.rootScope.currentUser"><a href="/signin">sign in</a></li>
+			<li ng-hide="header.rootScope.currentUser"><a ui-sref="signin">sign in</a></li>
 		</ul>
 		</div>
 	</div>

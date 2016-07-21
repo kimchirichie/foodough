@@ -4,22 +4,24 @@ import uiRouter from 'angular-ui-router';
 
 import template from './submit.html';
 import { Meteor } from 'meteor/meteor';
-import { Expenses } from '../../../api/expenses/index';
+import { Expenses } from '../../../api/single';
 
 class Submit {
 	constructor($scope, $reactive, $state, $rootScope, $stateParams){
 		'ngInject';
 		$reactive(this).attach($scope);
+		console.log('submit constructor');
 		this.state = $state;
 		this.rootScope = $rootScope;
-		this.subscribe('expenses');
+		this.subscribe('single',() => [this.getReactively('transaction_id')]);
 		this.transaction_id = undefined;
 		this.helpers({
 			expense: () => Expenses.findOne({_id: this.getReactively('transaction_id')})
 		});
 		this.rootScope.$watch('currentUser',function(){
+			console.log('submit user watch');
 			this.boot();
-		}.bind(this))
+		}.bind(this)); 
 		this.clear();
 		if($stateParams.transaction_id){
 			this.transaction_id = $stateParams.transaction_id;

@@ -9,13 +9,15 @@ class Signin {
 	constructor($scope, $reactive, $state, $rootScope, $timeout){
 		'ngInject';
 		$reactive(this).attach($scope);
+		console.log('signin constructor');
 		this.state = $state;
 		this.rootScope = $rootScope;
 		this.timeout = $timeout;
 		this.loading = false;
 		this.rootScope.$watch('currentUser',function(){
+			console.log('signin user watch');
 			this.boot();
-		}.bind(this))
+		}.bind(this));
 	}
 
 	boot(){

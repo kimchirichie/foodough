@@ -8,12 +8,14 @@ class Landing {
 
 	constructor($scope, $reactive, $state, $rootScope){
 		'ngInject';
+		console.log('landing constructor');
 		$reactive(this).attach($scope);
 		this.state = $state;
 		this.rootScope = $rootScope;
 		this.rootScope.$watch('currentUser',function(){
+			console.log('landing user watch');
 			this.boot();
-		}.bind(this))
+		}.bind(this));
 	}
 
 	boot(){
