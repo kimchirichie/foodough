@@ -9,13 +9,11 @@ class Signup {
 	constructor($scope, $reactive, $state, $rootScope, $timeout){
 		'ngInject';
 		$reactive(this).attach($scope);
-		console.log('signup constructor');
 		this.state = $state;
 		this.rootScope = $rootScope;
 		this.timeout = $timeout;
 		this.loading = false;
 		this.rootScope.$watch('currentUser',function(){
-			console.log('signout user watch');
 			this.boot();
 		}.bind(this));
 	}

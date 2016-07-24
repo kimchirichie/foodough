@@ -10,7 +10,6 @@ class Submit {
 	constructor($scope, $reactive, $state, $rootScope, $stateParams){
 		'ngInject';
 		$reactive(this).attach($scope);
-		console.log('submit constructor');
 		this.state = $state;
 		this.rootScope = $rootScope;
 		this.subscribe('single',() => [this.getReactively('transaction_id')]);
@@ -19,7 +18,6 @@ class Submit {
 			expense: () => Expenses.findOne({_id: this.getReactively('transaction_id')})
 		});
 		this.rootScope.$watch('currentUser',function(){
-			console.log('submit user watch');
 			this.boot();
 		}.bind(this)); 
 		this.clear();

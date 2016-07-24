@@ -8,7 +8,6 @@ class Landing {
 
 	constructor($scope, $reactive, $state, $rootScope){
 		'ngInject';
-		console.log('landing constructor');
 		$reactive(this).attach($scope);
 		this.state = $state;
 		this.rootScope = $rootScope;
