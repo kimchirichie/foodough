@@ -27,7 +27,7 @@ class Signup {
 		this.loading = true;
 
 		if (this.confirm !== user.password){
-			Bert.alert('Your password does not match', 'danger');
+			Bert.alert('Your password does not match', 'danger', 'growl-top-right');
 			user.password = '';
 			this.confirm = '';
 			this.timeout(function(){this.loading = false;}.bind(this), 1300);
@@ -36,19 +36,19 @@ class Signup {
 
 		Accounts.createUser(user, function(error){
 			if(error) {
-				Bert.alert(error.reason, 'danger');
+				Bert.alert(error.reason, 'danger', 'growl-top-right');
 				this.timeout(function(){this.loading = false;}.bind(this), 1300);
 			} else {
 				Meteor.call('sendVerificationLink', function(error, response){
 					if(error){
 						// need emailer to send emails
-						Bert.alert(error.reason, 'danger');
+						Bert.alert(error.reason, 'danger', 'growl-top-right');
 						this.timeout(function(){this.loading = false;}.bind(this), 1300);
 					} else {
 						user = {};
 						this.loading = false;
 						this.state.go('welcome');
-						Bert.alert('Verification email sent!', 'success');
+						Bert.alert('Verification email sent!', 'success', 'growl-top-right');
 						Meteor.logout();
 					}
 				}.bind(this));
