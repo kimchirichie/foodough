@@ -8,10 +8,12 @@ class Header {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.rootScope = $rootScope;
+		this.state = $state;
 	}
 
 	signout() {
 		Meteor.logout();
+		this.state.go('landing');
 	}
 }
 

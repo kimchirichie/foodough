@@ -8,11 +8,11 @@ import template from './dashboard.html';
 import { Expenses } from '../../../api/expenses/index';
 
 class Dashboard {
-	constructor($scope, $reactive, $state, $rootScope){
+	constructor($scope, $reactive, $state){
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.state = $state;
-		this.rootScope = $rootScope;
+		this.edit = false;
 		this.perPage = 20;
 		this.page = 1;
 		this.sort = {date: -1};
@@ -34,11 +34,6 @@ class Dashboard {
 			}
 		});
 
-		this.rootScope.$watch('currentUser',function(){
-			this.boot();
-		}.bind(this));
-
-		// $(window).bind('scroll', this.scroll);
 	}
 
 	pageChanged(newPage) {
@@ -49,13 +44,19 @@ class Dashboard {
 		this.sort = {date: -this.sort.date}
 	}
 
-	boot() {
-		if(!this.rootScope.currentUser){this.state.go('signin');}
+	rowclick(expense) {
+		if (this.edit){
+			this.state.go('submit', {transaction_id : expense._id})
+		} else {
+			this.searchText = expense.description;
+		}
 	}
 
-	// scroll(){
-	// 	console.log('scrolling');
-	// }
+	editMode(){
+		this.edit = !this.edit;
+		console.log(this.edit);
+	}
+
 }
 
 const name = 'dashboard';
@@ -76,6 +77,21 @@ function config($stateProvider) {
 	'ngInject';
 	$stateProvider.state('dashboard', {
 		url: '/dashboard',
-		template: '<dashboard></dashboard>'
+		template: '<dashboard></dashboard>',
+		resolve:{
+			user: function($q, $state){
+				var defer = $q.defer();
+				Meteor.setTimeout(function(){
+					var user = Meteor.user();
+					if(!user){
+						$state.go('signin');
+					} else {
+						defer.resolve();
+					}
+				},500);
+				return defer.promise;
+			}
+		}
+
 	});
 }

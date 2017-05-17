@@ -6,20 +6,12 @@ import template from './password.html';
 
 class Password {
 
-	constructor($scope, $reactive, $state, $rootScope, $timeout){
+	constructor($scope, $reactive, $state, $timeout){
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.state = $state;
-		this.rootScope = $rootScope;
 		this.timeout = $timeout;
 		this.loading = false;
-		this.rootScope.$watch('currentUser',function(){
-			this.boot();
-		}.bind(this));
-	}
-
-	boot(){
-		if(this.rootScope.currentUser){this.state.go('dashboard');}
 	}
 
 	submit(){
@@ -69,7 +61,21 @@ function config($stateProvider) {
     'ngInject';
     $stateProvider.state('password', {
         url: '/password/:token',
-        template: '<password></password>'
+        template: '<password></password>',
+		resolve:{
+			user: function($q, $state){
+				var defer = $q.defer();
+				Meteor.setTimeout(function(){
+					var user = Meteor.user();
+					if(user){
+						$state.go('dashboard');
+					} else {
+						defer.resolve();
+					}
+				},500);
+				return defer.promise;
+			}
+		}
     });
 }
 

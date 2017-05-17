@@ -19,6 +19,11 @@
 		th, td{
 			padding: 5px 5px;
 		}
+
+		.expense-row:hover {
+			background: $blue;
+			cursor: pointer;
+		}
 	}
 
 	.right {

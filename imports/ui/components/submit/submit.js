@@ -17,17 +17,10 @@ class Submit {
 		this.helpers({
 			expense: () => Expenses.findOne({_id: this.getReactively('transaction_id')})
 		});
-		this.rootScope.$watch('currentUser',function(){
-			this.boot();
-		}.bind(this)); 
 		this.clear();
 		if($stateParams.transaction_id){
 			this.transaction_id = $stateParams.transaction_id;
 		}
-	}
-
-	boot(){
-		if(!this.rootScope.currentUser) this.state.go('signin');
 	}
 
 	record(expense){
@@ -92,7 +85,22 @@ function config($stateProvider) {
 	'ngInject';
 	$stateProvider.state('submit', {
 		url: '/submit/:transaction_id',
-		template: '<submit></submit>'
+		template: '<submit></submit>',
+		resolve:{
+			user: function($q, $state){
+				var defer = $q.defer();
+				Meteor.setTimeout(function(){
+					var user = Meteor.user();
+					if(!user){
+						$state.go('signin');
+					} else {
+						defer.resolve();
+					}
+				},500);
+				return defer.promise;
+			}
+		}
+
 	});
 }
 
