@@ -3,34 +3,20 @@
 		<h1>Dashboard</h1>
 		<hr>
 
+		<div class="btn-group">
+			<button class="edit-button" ng-click="dashboard.toggleEdit()">
+				<img class="button-icon" src="/images/edit.svg" ng-show="dashboard.editMode"/>
+				<img class="button-icon" src="/images/search.svg" ng-hide="dashboard.editMode"/>
+			</button>
+			<button class="button-primary add-button " ui-sref="submit">Add transaction</button>
+		</div>
 
-		<table class="add-tool">
-			<tr>
-				<td class="edit-btn">
-					<a ng-click="dashboard.editMode()">
-						<img class="edit" src="/images/edit.svg" ng-hide="dashboard.edit"/>
-						<p ng-show="dashboard.edit">search mode</p>
-					</a>
-				</td>	
-				<td class="add-bar">
-					<input type="submit" class="button-primary" ui-sref="submit" value="Add transaction" />
-				</td>
-			</tr>
-		</table>
-
-
-
-		
-		<table class="search-tool">
-			<tr>
-				<td class="search-bar">
-					<input type="search" ng-model="dashboard.searchText" placeholder="Search" />
-				</td>
-				<td class="search-clear">
-					<a ng-click="dashboard.clearSearch()"><img class="edit" src="/images/clear.svg"></a>
-				</td>	
-			</tr>
-		</table>
+		<div class="btn-group">
+			<input class="search-field" type="text" ng-model="dashboard.searchText" placeholder="Search" >
+			<button class="clear-button" ng-click="dashboard.clearSearch()">
+				<img class="button-icon" src="/images/clear.svg">
+			</button>
+		</div>
 
 		<table class="stats-table" ng-show="dashboard.stats">
 			<tr>

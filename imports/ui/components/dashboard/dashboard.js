@@ -12,7 +12,7 @@ class Dashboard {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.state = $state;
-		this.edit = false;
+		this.editMode = false;
 		this.perPage = 20;
 		this.page = 1;
 		this.sort = {date: -1};
@@ -58,7 +58,7 @@ class Dashboard {
 	}
 
 	rowclick(expense) {
-		if (this.edit){
+		if (this.editMode){
 			this.state.go('submit', {transaction_id : expense._id})
 		} else {
 			this.searchText = expense.description;
@@ -66,9 +66,8 @@ class Dashboard {
 		}
 	}
 
-	editMode(){
-		this.edit = !this.edit;
-		console.log(this.edit);
+	toggleEdit(){
+		this.editMode = !this.editMode;
 	}
 
 }
