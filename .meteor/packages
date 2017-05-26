@@ -33,3 +33,4 @@ email@1.2.1
 ### PUBLISH TOOL ###
 tmeasday:publish-counts
 shell-server
+msavin:fetcher

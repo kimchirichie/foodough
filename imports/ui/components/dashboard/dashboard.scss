@@ -61,6 +61,83 @@
 			color: $red;
 		}
 	}
+
+	.stats-table td{
+		text-align: center;
+	}
+
+
+	.add-tool {
+
+		margin: 0px;
+		border: 1px solid $grey;
+		border-radius: 3px;
+		border-collapse: separate; 
+
+		td{
+			padding: 0px;
+			border-style:hidden;
+
+			input{
+				border-style:hidden;
+				margin:0px;
+			}
+		}
+
+		.add-bar{
+			background: $blue;
+			width: 90%;
+		}
+
+		.edit-btn {
+			border-left-width: 1px;
+			border-left-style: solid;
+			border-color: $grey;
+			width: 10%;
+			&:hover{
+				cursor:pointer;	
+			}
+		}		
+
+	}
+
+	.search-tool {
+
+		margin: 0px;
+		border: 1px solid $grey;
+		border-radius: 3px;
+		border-collapse: separate; 
+
+		td{
+			padding: 0px;
+			border-style:hidden;
+
+			input{
+				border-style:hidden;
+				margin:0px;
+			}
+		}
+
+		.search-bar {
+			width: 80%;
+		}
+
+		.search-clear {
+			width: 20%;
+			&:hover{
+				cursor:pointer;	
+			}
+			a{
+				display: inline-block;
+				text-align: center;
+				img{
+					width: 16px;
+				}
+			}
+		}
+	}
+
+
 }
 
 @media (max-width: 750px){

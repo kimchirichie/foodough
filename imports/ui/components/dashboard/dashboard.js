@@ -31,9 +31,22 @@ class Dashboard {
 			},
 			expensesCount() {
 				return Counts.get('numberOfExpenses');
+			},
+			stats(){
+				return Fetcher.get("results");
 			}
 		});
+		this.getStats() //clears session var at start
 
+	}
+
+	getStats(){
+		Fetcher.retrieve("results", "getStats", this.searchText);
+	}
+
+	clearSearch(){
+		this.searchText = '';
+		this.getStats();
 	}
 
 	pageChanged(newPage) {
@@ -49,6 +62,7 @@ class Dashboard {
 			this.state.go('submit', {transaction_id : expense._id})
 		} else {
 			this.searchText = expense.description;
+			this.getStats();
 		}
 	}
 

@@ -2,9 +2,47 @@
 	<div class="container">
 		<h1>Dashboard</h1>
 		<hr>
-		<a class="button button-primary" ui-sref="submit">Add transaction</a>
-		<a class="button button" ng-click="dashboard.editMode()">{{ dashboard.edit ? 'search': 'edit' }}</a>
-		<input type="search" ng-model="dashboard.searchText" placeholder="Search" />
+
+
+		<table class="add-tool">
+			<tr>
+				<td class="edit-btn">
+					<a ng-click="dashboard.editMode()">
+						<img class="edit" src="/images/edit.svg" ng-hide="dashboard.edit"/>
+						<p ng-show="dashboard.edit">search mode</p>
+					</a>
+				</td>	
+				<td class="add-bar">
+					<input type="submit" class="button-primary" ui-sref="submit" value="Add transaction" />
+				</td>
+			</tr>
+		</table>
+
+
+
+		
+		<table class="search-tool">
+			<tr>
+				<td class="search-bar">
+					<input type="search" ng-model="dashboard.searchText" placeholder="Search" />
+				</td>
+				<td class="search-clear">
+					<a ng-click="dashboard.clearSearch()"><img class="edit" src="/images/clear.svg"></a>
+				</td>	
+			</tr>
+		</table>
+
+		<table class="stats-table" ng-show="dashboard.stats">
+			<tr>
+				<td><b>Life time</b></td>
+				<td><b>This year</b></td>
+				<td><b>Average</b></td>
+			</tr>
+			<tr>
+				<td>{{dashboard.stats.lifeTime | currency }}</td>
+				<td>{{dashboard.stats.yearYet | currency }}</td>
+				<td>{{dashboard.stats.avg | currency }}</td>
+			</tr>
 		<table>
 			<tr>
 				<th><a ng-click="dashboard.sortChanged()">Date</a></th>
