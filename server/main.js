@@ -27,6 +27,15 @@ Meteor.startup(() => {
 			}
 			avg = lifeTime / expenses.length
 			return {lifeTime:lifeTime,yearYet:yearYet,avg:avg};
+		},
+		getMonthly(){
+			let userId = Meteor.userId();
+			expenses = Expenses.find({userId:userId},{sort:{date:1}}).fetch()
+			date = expenses[0].date
+			year = day.getFullYear()
+			month = day.getMonth()
+			// need to calculate the rest of the data analysis for the month
+			return []
 		}
 	});
 });

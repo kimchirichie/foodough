@@ -17,6 +17,7 @@ import { name as Submit } from '../submit/submit';
 import { name as Forgot } from '../forgot/forgot';
 import { name as Password } from '../password/password';
 import { name as Verify } from '../verify/verify';
+import { name as Stats } from '../stats/stats';
 
 class Foodough{
 	constructor($scope, $reactive, $state){
@@ -39,7 +40,8 @@ export default angular.module(name,[
 	Submit,
 	Forgot,
 	Password,
-	Verify
+	Verify,
+	Stats
 ])
 .component(name, {
 	template,
