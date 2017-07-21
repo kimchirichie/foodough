@@ -12,7 +12,7 @@ class Dashboard {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.state = $state;
-		this.editMode = false;
+		this.editMode = true;
 		this.perPage = 20;
 		this.page = 1;
 		this.sort = {date: -1};

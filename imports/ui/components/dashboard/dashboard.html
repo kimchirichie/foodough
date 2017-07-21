@@ -5,13 +5,13 @@
 
 		<div class="btn-group">
 			<button class="edit-button" ng-click="dashboard.toggleEdit()">
-				<img class="button-icon" src="/images/edit.svg" ng-show="dashboard.editMode"/>
-				<img class="button-icon" src="/images/search.svg" ng-hide="dashboard.editMode"/>
+				<img class="button-icon" src="/images/edit.svg" ng-hide="dashboard.editMode"/>
+				<img class="button-icon" src="/images/search.svg" ng-show="dashboard.editMode"/>
 			</button>
 			<button class="button-primary add-button " ui-sref="submit">Add transaction</button>
 		</div>
 
-		<div class="btn-group">
+		<div class="btn-group" ng-hide="dashboard.editMode">
 			<input class="search-field" type="text" ng-model="dashboard.searchText" placeholder="Search" >
 			<button class="clear-button" ng-click="dashboard.clearSearch()">
 				<img class="button-icon" src="/images/clear.svg">
