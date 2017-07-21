@@ -29,13 +29,33 @@ Meteor.startup(() => {
 			return {lifeTime:lifeTime,yearYet:yearYet,avg:avg};
 		},
 		getMonthly(){
+			var now = new Date();
+			var offset = (now).getTimezoneOffset()*60*1000;
+				now = new Date(now-offset);
+
+			var start = new Date(now.getFullYear()-1,now.getMonth()+1)
+
 			let userId = Meteor.userId();
-			expenses = Expenses.find({userId:userId},{sort:{date:1}}).fetch()
-			date = expenses[0].date
-			year = day.getFullYear()
-			month = day.getMonth()
-			// need to calculate the rest of the data analysis for the month
-			return []
+			var expenses = Expenses.find({userId:userId, date:{$gte:start}},{sort:{date:1}}).fetch();
+
+			var spending = new Array(12).fill(0);
+			var earning = new Array(12).fill(0);
+
+			var nowMonth = now.getMonth();
+			
+			for (var i=0; i<expenses.length; i++){
+				var yearDiff = expenses[i].date.getFullYear()-start.getFullYear();
+				var index = expenses[i].date.getMonth()+(yearDiff*12-(nowMonth+1))
+
+				if(['work', 'refund', 'other income'].indexOf(expenses[i].category)<0){
+					spending[index] += expenses[i].amount;
+				} else {
+					earning[index] += expenses[i].amount;
+				}
+			}
+
+			return {spending:spending,earning:earning};
 		}
+
 	});
 });

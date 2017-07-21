@@ -10,16 +10,24 @@ class Stats {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.state = $state;
+		this.Math = window.Math;
+		this.mobileCap = 3;
 		this.helpers({
 			monthly(){
 				return Fetcher.get('results');
 			}
 		})
+		this.now = new Date();
+		var offset = (this.now).getTimezoneOffset()*60*1000;
+		this.now = new Date(this.now-offset);
+		 	
+		this.start = new Date(this.now.getFullYear()-1,this.now.getMonth()+1);
+
 		this.getMonthly();
 	}
 
 	getMonthly(){
-		Fetcher.retrieve("results", "getMonthly")
+		Fetcher.retrieve("results", "getMonthly");
 	}
 
 

@@ -1,21 +1,29 @@
-<div class="container">
-	<table>
-		<tr>
-			<td>Month</td>
-			<td>Income</td>
-			<td>Dining</td>
-			<td>Leisure</td>
-			<td>Living</td>
-			<td>Other</td>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
-			<td>4</td>
-			<td>5</td>
-			<td>6</td>
-		</tr>
-	</table>
-	<p>{{stats.monthly}}</p>
+<div class="stats">
+	<div class="container">
+		<h1>Stats</h1>
+		<hr>
+
+		<table>
+			<tr>
+				<td><b>Monthly</b></td>
+				<td ng-repeat="i in stats.monthly.earning track by $index" ng-class="{big:$index<stats.monthly.earning.length-stats.mobileCap}">
+					{{(stats.start.getMonth()+$index)%12+1}}/{{stats.start.getFullYear()+stats.Math.floor((stats.start.getMonth()+$index)/12)-2000}}
+				</td>
+
+			</tr>
+			<tr>
+				<td>Earning</td>
+				<td ng-repeat="i in stats.monthly.earning track by $index" ng-class="{big:$index<stats.monthly.earning.length-stats.mobileCap}">
+					{{stats.monthly.earning[$index] | currency}}
+				</td>
+			</tr>
+			<tr>
+				<td>Spending</td>
+				<td ng-repeat="i in stats.monthly.spending track by $index" ng-class="{big:$index<stats.monthly.earning.length-stats.mobileCap}">
+					{{stats.monthly.spending[$index] | currency}}
+					
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>

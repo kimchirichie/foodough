@@ -1,0 +1,13 @@
+.stats{
+
+	hr {
+		margin-top: 10px;
+	}
+	
+	@media (max-width: 750px){
+
+		.big{
+			display:none;
+		}
+	}
+}

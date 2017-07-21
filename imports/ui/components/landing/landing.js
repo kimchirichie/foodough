@@ -40,7 +40,7 @@ function config($stateProvider) {
 					} else {
 						defer.resolve();
 					}
-				},500);
+				},600);
 				return defer.promise;
 			}
 		}

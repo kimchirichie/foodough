@@ -118,11 +118,10 @@
 		}
 	}
 
-}
+	@media (max-width: 750px){
 
-@media (max-width: 750px){
-
-	.big{
-		display:none;
+		.big{
+			display:none;
+		}
 	}
 }
