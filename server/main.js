@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Expenses } from '../imports/api/expenses';
 import { Single } from '../imports/api/single';
+import { moment } from 'meteor/momentjs:moment';
 
 Meteor.startup(() => {
 	var email = process.env.EMAIL;
@@ -54,8 +55,41 @@ Meteor.startup(() => {
 				}
 			}
 
-			return {spending:spending,earning:earning};
-		}
+			return {earning:earning,spending:spending};
+		},
+		getWeekly(){
+			var incomes = ['work', 'refund', 'other income'];
+			var weeksFarBack = 6;
+			// day = moment().day(); //day of the week 0 -> sunday, 6 -> saturday
+			var start = moment().endOf('week').subtract(weeksFarBack,'weeks');
 
+			let userId = Meteor.userId();
+			var expenses = Expenses.find({userId:userId, date:{$gte:start.toDate()}},{sort:{date:1}}).fetch();
+			var result = new Array(weeksFarBack);
+
+			for(var i=0; i<weeksFarBack; i++){
+				var date=start.clone().format();
+				
+				result[i]={
+					date:date,
+					earning:0,
+					spending:0
+				};
+
+				start.add(1,'week')
+
+			}
+
+			for(var j=0; j<expenses.length; j++){
+				var index = weeksFarBack-1-moment().endOf('week').diff(expenses[j].date, 'weeks');
+
+				if(incomes.indexOf(expenses[j].category)<0){
+					result[index].spending += expenses[j].amount;
+				} else {
+					result[index].earning += expenses[j].amount;
+				}
+			}
+			return result;
+		}
 	});
 });

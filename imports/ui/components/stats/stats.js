@@ -14,7 +14,10 @@ class Stats {
 		this.mobileCap = 3;
 		this.helpers({
 			monthly(){
-				return Fetcher.get('results');
+				return Fetcher.get('monthly');
+			},
+			weekly(){
+				return Fetcher.get('weekly');
 			}
 		})
 		this.now = new Date();
@@ -24,12 +27,16 @@ class Stats {
 		this.start = new Date(this.now.getFullYear()-1,this.now.getMonth()+1);
 
 		this.getMonthly();
+		this.getWeekly();
 	}
 
 	getMonthly(){
-		Fetcher.retrieve("results", "getMonthly");
+		Fetcher.retrieve("monthly", "getMonthly");
 	}
 
+	getWeekly(){
+		Fetcher.retrieve("weekly", "getWeekly");
+	}
 
 }
 
