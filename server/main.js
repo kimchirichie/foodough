@@ -29,67 +29,52 @@ Meteor.startup(() => {
 			avg = lifeTime / expenses.length
 			return {lifeTime:lifeTime,yearYet:yearYet,avg:avg};
 		},
-		getMonthly(){
-			var now = new Date();
-			var offset = (now).getTimezoneOffset()*60*1000;
-				now = new Date(now-offset);
-
-			var start = new Date(now.getFullYear()-1,now.getMonth()+1)
-
-			let userId = Meteor.userId();
-			var expenses = Expenses.find({userId:userId, date:{$gte:start}},{sort:{date:1}}).fetch();
-
-			var spending = new Array(12).fill(0);
-			var earning = new Array(12).fill(0);
-
-			var nowMonth = now.getMonth();
-			
-			for (var i=0; i<expenses.length; i++){
-				var yearDiff = expenses[i].date.getFullYear()-start.getFullYear();
-				var index = expenses[i].date.getMonth()+(yearDiff*12-(nowMonth+1))
-
-				if(['work', 'refund', 'other income'].indexOf(expenses[i].category)<0){
-					spending[index] += expenses[i].amount;
-				} else {
-					earning[index] += expenses[i].amount;
-				}
-			}
-
-			return {earning:earning,spending:spending};
-		},
-		getWeekly(){
+		getHistory(increment, quantity){
 			var incomes = ['work', 'refund', 'other income'];
-			var weeksFarBack = 6;
-			// day = moment().day(); //day of the week 0 -> sunday, 6 -> saturday
-			var start = moment().endOf('week').subtract(weeksFarBack,'weeks');
+			// var start = moment().endOf(increment).subtract(quantity,increment);
+			var start = moment().startOf(increment).subtract(quantity-1,increment);
 
 			let userId = Meteor.userId();
 			var expenses = Expenses.find({userId:userId, date:{$gte:start.toDate()}},{sort:{date:1}}).fetch();
-			var result = new Array(weeksFarBack);
+			var result = new Array(quantity);
 
-			for(var i=0; i<weeksFarBack; i++){
+			for(var i=0; i<quantity; i++){
 				var date=start.clone().format();
 				
 				result[i]={
 					date:date,
 					earning:0,
-					spending:0
+					spending:0,
+					dining:0,
+					leisure:0,
+					living:0,
+					transportation:0,
+					health:0,
+					education:0,
+					service:0,
+					electronics:0,
+					gift:0,
+					donation:0
 				};
 
-				start.add(1,'week')
-
+				start.add(1,increment)
 			}
 
 			for(var j=0; j<expenses.length; j++){
-				var index = weeksFarBack-1-moment().endOf('week').diff(expenses[j].date, 'weeks');
+				var index = quantity-1-moment().endOf(increment).diff(expenses[j].date, increment);
 
 				if(incomes.indexOf(expenses[j].category)<0){
 					result[index].spending += expenses[j].amount;
 				} else {
 					result[index].earning += expenses[j].amount;
 				}
+
+				if(expenses[j].category) result[index][expenses[j].category] += expenses[j].amountl
+
+
 			}
 			return result;
-		}
+
+		},
 	});
 });

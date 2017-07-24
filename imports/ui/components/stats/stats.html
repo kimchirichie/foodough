@@ -3,28 +3,61 @@
 		<h1>Stats</h1>
 		<hr>
 
-		<div>{{stats.weekly}}</div>
+		<button class="toggle-btn" ng-show="stats.mode" ng-click="stats.toggleInc()">Monthly</button>
+		<button class="toggle-btn" ng-hide="stats.mode" ng-click="stats.toggleInc()">Weekly</button>
 
 		<table>
 			<tr>
-				<td><b>Monthly</b></td>
-				<td ng-repeat="i in stats.monthly.earning track by $index" ng-class="{big:$index<stats.monthly.earning.length-stats.mobileCap}">
-					{{(stats.start.getMonth()+$index)%12+1}}/{{stats.start.getFullYear()+stats.Math.floor((stats.start.getMonth()+$index)/12)-2000}}
-				</td>
-
+				<td><b>{{stats.mode ? "Weekly" : "Monthly"}}</b></td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.date | date : 'MM/dd'}}</td>
 			</tr>
 			<tr>
 				<td>Earning</td>
-				<td ng-repeat="i in stats.monthly.earning track by $index" ng-class="{big:$index<stats.monthly.earning.length-stats.mobileCap}">
-					{{stats.monthly.earning[$index] | currency}}
-				</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.earning | currency}}</td>
 			</tr>
 			<tr>
 				<td>Spending</td>
-				<td ng-repeat="i in stats.monthly.spending track by $index" ng-class="{big:$index<stats.monthly.earning.length-stats.mobileCap}">
-					{{stats.monthly.spending[$index] | currency}}
-					
-				</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.spending | currency}}</td>
+			</tr>
+			<tr>
+				<td>Dining</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.dining | currency}}</td>
+			</tr>
+			<tr>
+				<td>Leisure</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.leisure | currency}}</td>
+			</tr>
+			<tr>
+				<td>Living</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.living | currency}}</td>
+			</tr>
+			<tr>
+				<td>Transportation</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.transportation | currency}}</td>
+			</tr>
+			<tr>
+				<td>Health</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.health | currency}}</td>
+			</tr>
+			<tr>
+				<td>Education</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.education | currency}}</td>
+			</tr>
+			<tr>
+				<td>Service</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.service | currency}}</td>
+			</tr>
+			<tr>
+				<td>Electronics</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.electronics | currency}}</td>
+			</tr>
+			<tr>
+				<td>Gift</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.gift | currency}}</td>
+			</tr>
+			<tr>
+				<td>Donation</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.donation | currency}}</td>
 			</tr>
 		</table>
 	</div>

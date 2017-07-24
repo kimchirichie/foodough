@@ -3,11 +3,17 @@
 	hr {
 		margin-top: 10px;
 	}
-	
+
+	.toggle-btn {
+		width: 100%;
+	}
+
+
 	@media (max-width: 750px){
 
 		.big{
 			display:none;
 		}
 	}
+
 }

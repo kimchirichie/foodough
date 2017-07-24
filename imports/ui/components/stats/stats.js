@@ -12,12 +12,10 @@ class Stats {
 		this.state = $state;
 		this.Math = window.Math;
 		this.mobileCap = 3;
+		this.mode = true; // true => weekly; false => monthly
 		this.helpers({
-			monthly(){
-				return Fetcher.get('monthly');
-			},
-			weekly(){
-				return Fetcher.get('weekly');
+			result(){
+				return Fetcher.get('result');
 			}
 		})
 		this.now = new Date();
@@ -26,16 +24,25 @@ class Stats {
 		 	
 		this.start = new Date(this.now.getFullYear()-1,this.now.getMonth()+1);
 
-		this.getMonthly();
 		this.getWeekly();
 	}
 
 	getMonthly(){
-		Fetcher.retrieve("monthly", "getMonthly");
+		Fetcher.retrieve("result", "getHistory", "month", 6);
 	}
 
 	getWeekly(){
-		Fetcher.retrieve("weekly", "getWeekly");
+		Fetcher.retrieve("result", "getHistory", "week", 6);
+	}
+
+	toggleInc(){
+		if(this.mode){
+			this.getMonthly();
+			this.mode = false;
+		} else {
+			this.getWeekly();
+			this.mode = true;
+		}
 	}
 
 }
