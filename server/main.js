@@ -69,7 +69,7 @@ Meteor.startup(() => {
 					result[index].earning += expenses[j].amount;
 				}
 
-				if(expenses[j].category) result[index][expenses[j].category] += expenses[j].amountl
+				if(expenses[j].category) result[index][expenses[j].category] += expenses[j].amount;
 
 
 			}
