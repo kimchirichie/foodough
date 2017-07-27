@@ -12,7 +12,7 @@ class Stats {
 		this.state = $state;
 		this.Math = window.Math;
 		this.mobileCap = 3;
-		this.mode = true; // true => weekly; false => monthly
+		this.mode = false; // true => weekly; false => monthly
 		this.helpers({
 			result(){
 				return Fetcher.get('result');
@@ -24,7 +24,7 @@ class Stats {
 		 	
 		this.start = new Date(this.now.getFullYear()-1,this.now.getMonth()+1);
 
-		this.getWeekly();
+		this.getMonthly();
 	}
 
 	getMonthly(){
@@ -54,7 +54,7 @@ export default angular.module(name, [
 	angularMeteor,
     uiRouter
 ]).component(name, {
-	template,
+	template: template.default,
 	controllerAs: name,
 	controller: Stats
 })

@@ -51,7 +51,7 @@ export default angular.module(name, [
 	angularMeteor,
     uiRouter
 ]).component(name, {
-	template,
+	template: template.default,
 	controllerAs: name,
 	controller: Password
 })
