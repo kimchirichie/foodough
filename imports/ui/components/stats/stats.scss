@@ -8,20 +8,28 @@
 		width: 100%;
 	}
 
+	table {
+		width: 100%;
+	}
 
 	@media (max-width: 750px){
 
 		.big{
 			display:none;
 		}
+
+		td{
+			padding:5px 10px;
+		}
+		.text{
+			font-size: 10px;
+		}
 	}
 
 	td {
-		padding:5px 10px;
 		text-align: right;
 	}
 	.text{
 		text-align: left;
-		font-size: 10px;
 	}
 }
