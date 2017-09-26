@@ -8,7 +8,7 @@ import template from './dashboard.html';
 import { Expenses } from '../../../api/expenses/index';
 
 class Dashboard {
-	constructor($scope, $reactive, $state){
+	constructor($scope, $reactive, $state, $stateParams){
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.state = $state;
@@ -16,7 +16,6 @@ class Dashboard {
 		this.perPage = 20;
 		this.page = 1;
 		this.sort = {date: -1};
-		this.searchText = '';
 		this.subscribe('expenses',() => [{
 				limit: parseInt(this.perPage),
 				skip: parseInt((this.getReactively('page') - 1) * this.perPage),
@@ -37,7 +36,9 @@ class Dashboard {
 			}
 		});
 		this.getStats() //clears session var at start
-
+		if($stateParams.searchText){
+			this.searchText = $stateParams.searchText;
+		}
 	}
 
 	getStats(){
@@ -59,7 +60,7 @@ class Dashboard {
 
 	rowclick(expense) {
 		if (this.editMode){
-			this.state.go('submit', {transaction_id : expense._id})
+			this.state.go('submit', {transaction_id : expense._id, searchText : this.searchText})
 		} else {
 			this.searchText = expense.description;
 			this.getStats();
@@ -104,7 +105,9 @@ function config($stateProvider) {
 				},500);
 				return defer.promise;
 			}
+		},
+		params:{
+			searchText:''
 		}
-
 	});
 }

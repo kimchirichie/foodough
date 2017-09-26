@@ -34,11 +34,25 @@ To make iptable rules stick, install the iptable tool (following the instruction
 
  # Migration of Database
  
- This app uses a local database instead of an external data server. The database files are stored in:
- 
+ This app uses a local database instead of an external data server. The database files are stored in mongo. The following operations require meteor to be running in another terminal
+
  ```sh
- path/to/project/.meteor/local/db
+ $ meteor
  ```
+
+ To back up the collections:
+
+ ```sh
+ $ mongodump -h 127.0.0.1 --port 3001 -d meteor
+ ```
+
+This will create a 'dump' directory inside the current folder. To recover the collections using this dump:
+
+```sh
+$ mongorestore -h 127.0.0.1 --port 3001 -d meteor dump/meteor
+```
+
+This should restore the database if run successfully.
 
 By migrating the files inside here, you will be able to recover the data stored locally.
 

@@ -21,6 +21,9 @@ class Submit {
 		if($stateParams.transaction_id){
 			this.transaction_id = $stateParams.transaction_id;
 		}
+		if($stateParams.searchText){
+			this.searchText = $stateParams.searchText;
+		}
 	}
 
 	record(expense){
@@ -30,7 +33,7 @@ class Submit {
 			this.insert(expense);
 		}
 		this.clear();
-		this.state.go('dashboard');
+		this.state.go('dashboard',{searchText:this.searchText});
 	}
 
 	insert(expense){
@@ -55,7 +58,7 @@ class Submit {
 		if (this.expense && confirm('Are you sure?')) {
 			Expenses.remove(this.expense._id);
 			this.clear();
-			this.state.go('dashboard');
+			this.state.go('dashboard',{searchText:this.searchText});
 		}
 	}
 
@@ -99,8 +102,10 @@ function config($stateProvider) {
 				},500);
 				return defer.promise;
 			}
+		},
+		params:{
+			searchText:''
 		}
-
 	});
 }
 

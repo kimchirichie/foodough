@@ -16,24 +16,30 @@
 				<option>leisure</option>
 				<option>living</option>
 				<option>transportation</option>
-				<option>health</option>
+				<option>fitness</option>
 				<option>education</option>
-				<option>service</option>
 				<option>electronics</option>
 				<option>gift</option>
 				<option>donation</option>
+				<option>groceries</option>
+				<option>coffee</option>
+				<option>alcohol</option>
+				<option>home</option>
+				<option>car</option>
+				<option>phone</option>
+				<option>fee</option>
 			</select>
 			<label>Payment:</label>
 			<select ng-model="submit.expense.payment">
-				<option>cash</option>
-				<option>debit</option>
 				<option>credit</option>
+				<option>debit</option>
+				<option>cash</option>
 			</select>
 			<label>Description:</label>
 			<textarea placeholder="dinner at mels" ng-model="submit.expense.description"></textarea>
 			<input class="button-primary" type="submit" value="Submit" required>
 			<a class="button delete" ng-show="submit.expense._id" ng-click="submit.remove()">Delete</a>
-			<a class="button" ui-sref="dashboard">Cancle</a>
+			<a class="button" ui-sref="dashboard({searchText:submit.searchText})">Cancle</a>
 		</form>	
 	</div>
 </div>
