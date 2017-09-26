@@ -33,7 +33,7 @@ Meteor.startup(() => {
 			var incomes = ['work', 'refund', 'other income'];
 			// var start = moment().endOf(increment).subtract(quantity,increment);
 			var start = moment().startOf(increment).subtract(quantity-1,increment);
-
+console.log(start.format())
 			let userId = Meteor.userId();
 			var expenses = Expenses.find({userId:userId, date:{$gte:start.toDate()}},{sort:{date:1}}).fetch();
 			var result = new Array(quantity);
@@ -49,19 +49,34 @@ Meteor.startup(() => {
 					leisure:0,
 					living:0,
 					transportation:0,
-					health:0,
+					fitness:0,
 					education:0,
-					service:0,
 					electronics:0,
 					gift:0,
-					donation:0
+					donation:0,
+					groceries:0,
+					coffee:0,
+					alcohol:0,
+					home:0,
+					car:0,
+					phone:0,
+					fee:0
 				};
+
+
 
 				start.add(1,increment)
 			}
 
 			for(var j=0; j<expenses.length; j++){
-				var index = quantity-1-moment().endOf(increment).diff(expenses[j].date, increment);
+				var index;
+				if (increment == 'week'){
+					index = quantity-1-moment().endOf(increment).diff(expenses[j].date, increment);
+				} else if (increment == 'month'){
+					startMonth = moment(expenses[j].date).month();
+					endMonth = moment().endOf(increment).month();
+					index = quantity-1-(endMonth - startMonth);
+				}
 
 				if(incomes.indexOf(expenses[j].category)<0){
 					result[index].spending += expenses[j].amount;
