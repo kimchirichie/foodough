@@ -35,6 +35,16 @@
 				<option>debit</option>
 				<option>cash</option>
 			</select>
+			<div ng-hide="submit.transaction_id">
+				<input id="recurring" class="inline" type="checkbox" ng-model="submit.recurring">
+				<label class="inline" for="recurring">Recurring?</label>
+			</div>
+			<div ng-show="submit.recurring">
+				<select ng-model="submit.frequency">
+					<option>monthly</option>
+					<option>bimonthly</option>
+				</select>				
+			</div>
 			<label>Description:</label>
 			<textarea placeholder="dinner at mels" ng-model="submit.expense.description"></textarea>
 			<input class="button-primary" type="submit" value="Submit" required>

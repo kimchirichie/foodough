@@ -6,7 +6,7 @@ import utilsPagination from 'angular-utils-pagination';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 
 import template from './dashboard.html';
-import { Expenses } from '../../../api/expenses/index';
+import { Expenses } from '../../../api/expenses';
 
 class Dashboard {
 	constructor($scope, $reactive, $state, $stateParams){

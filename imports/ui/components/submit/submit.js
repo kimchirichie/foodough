@@ -6,6 +6,7 @@ import uiRouter from 'angular-ui-router';
 import template from './submit.html';
 import { Meteor } from 'meteor/meteor';
 import { Expenses } from '../../../api/single';
+import { Recurring } from '../../../api/recurring';
 
 class Submit {
 	constructor($scope, $reactive, $state, $rootScope, $stateParams){
@@ -30,6 +31,12 @@ class Submit {
 	record(expense){
 		if (this.expense._id){
 			this.update(expense);
+		} else if (this.recurring) {
+			expense.frequency = this.frequency;
+			Recurring.insert(expense)
+			console.log('recurring')
+			//dont actually return in production. this is for debuggin
+			return
 		} else {
 			this.insert(expense);
 		}
@@ -66,8 +73,9 @@ class Submit {
 	clear(){
 		this.expense = {}
 		this.expense.category = 'dining';
-		this.expense.payment = 'cash';
+		this.expense.payment = 'credit';
 		this.expense.date = new Date()
+		this.frequency = 'monthly'
 		if (this.rootScope.currentUser) this.expense.userId = this.rootScope.currentUser._id;
 	}
 }

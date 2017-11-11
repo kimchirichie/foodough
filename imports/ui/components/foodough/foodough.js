@@ -16,6 +16,7 @@ import { name as Signup } from '../signup/signup';
 import { name as Dashboard } from '../dashboard/dashboard';
 import { name as Submit } from '../submit/submit';
 import { name as Forgot } from '../forgot/forgot';
+import { name as Recurring } from '../recurring/recurring';
 import { name as Password } from '../password/password';
 import { name as Verify } from '../verify/verify';
 import { name as Stats } from '../stats/stats';
@@ -40,6 +41,7 @@ export default angular.module(name,[
 	Dashboard,
 	Submit,
 	Forgot,
+	Recurring,
 	Password,
 	Verify,
 	Stats

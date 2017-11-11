@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Expenses } from '../imports/api/expenses';
+import { Recurring } from '../imports/api/recurring';
 import { Single } from '../imports/api/single';
 import { moment } from 'meteor/momentjs:moment';
 

@@ -4,12 +4,12 @@ export const Expenses = new Mongo.Collection('expenses');
 
 Expenses.allow({
 	insert(userId, expense) {
-		return true;
+		return userId && expense.userId === userId;
 	},
 	update(userId, expense, fields, modifier){
-		return true;
+		return userId && expense.userId === userId;
 	},
 	remove(userId, expense){
-		return true;		
+		return userId && expense.userId === userId;
 	}
 })
