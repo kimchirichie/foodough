@@ -30,19 +30,5 @@ function config($stateProvider) {
 	$stateProvider.state('landing', {
 		url: '/',
 		template: '<landing></landing>',
-		resolve:{
-			user: function($q, $state){
-				var defer = $q.defer();
-				Meteor.setTimeout(function(){
-					var user = Meteor.user();
-					if(user){
-						$state.go('submit');
-					} else {
-						defer.resolve();
-					}
-				},600);
-				return defer.promise;
-			}
-		}
 	});
 }

@@ -1,5 +1,6 @@
 import angular from "angular";
 import angularMeteor from "angular-meteor";
+
 import uiRouter from 'angular-ui-router';
 // import ngMaterial from 'angular-material';
 // import ngAnimate from 'angular-animate';
@@ -48,10 +49,31 @@ export default angular.module(name,[
 	controllerAs: name,
 	controller: Foodough
 })
-.config(config);
+.config(config)
+.run(run);
 
-function config($locationProvider, $urlRouterProvider) {
+function config($locationProvider, $urlRouterProvider, $qProvider) {
 	'ngInject';
 	$locationProvider.html5Mode({'enabled': true, 'requireBase': false});
 	$urlRouterProvider.otherwise('/');
+	$qProvider.errorOnUnhandledRejections(false);
+}
+
+function run ($rootScope, $state) {
+	'ngInject';
+
+	// We can catch the error thrown when the $requireUser promise is rejected
+	// and redirect the user back to the main page
+	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+		if (error === 'AUTH_REQUIRED') {
+			$state.go('signin');
+		}
+	});
+
+	// redirect to submit page if logged in
+	Accounts.onLogin(function () {
+		if (!$state.is('submit')) {
+			$state.go('submit');
+		}
+	});
 }

@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import angularMeteorAuth from 'angular-meteor-auth';
 import uiRouter from 'angular-ui-router';
 
 import template from './submit.html';
@@ -76,6 +77,7 @@ const name = 'submit';
 // create a module
 export default angular.module(name, [
 	angularMeteor,
+	angularMeteorAuth,
 	uiRouter
 ]).component(name, {
 	template: template.default,
@@ -90,17 +92,8 @@ function config($stateProvider) {
 		url: '/submit/:transaction_id',
 		template: '<submit></submit>',
 		resolve:{
-			user: function($q, $state){
-				var defer = $q.defer();
-				Meteor.setTimeout(function(){
-					var user = Meteor.user();
-					if(!user){
-						$state.go('signin');
-					} else {
-						defer.resolve();
-					}
-				},500);
-				return defer.promise;
+			user: ($auth) => {
+				return $auth.requireUser();
 			}
 		},
 		params:{

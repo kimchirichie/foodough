@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import angularMeteorAuth from 'angular-meteor-auth';
 import uiRouter from 'angular-ui-router';
 import utilsPagination from 'angular-utils-pagination';
 import { Counts } from 'meteor/tmeasday:publish-counts';
@@ -93,17 +94,8 @@ function config($stateProvider) {
 		url: '/dashboard',
 		template: '<dashboard></dashboard>',
 		resolve:{
-			user: function($q, $state){
-				var defer = $q.defer();
-				Meteor.setTimeout(function(){
-					var user = Meteor.user();
-					if(!user){
-						$state.go('signin');
-					} else {
-						defer.resolve();
-					}
-				},500);
-				return defer.promise;
+			user: ($auth) => {
+				return $auth.requireUser();
 			}
 		},
 		params:{

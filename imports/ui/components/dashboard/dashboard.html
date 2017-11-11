@@ -44,7 +44,7 @@
 				<td>{{expense.amount | currency }}</td>
 				<td class="big">{{expense.category}}</td>
 				<td class="big">{{expense.payment}}</td>
-				<td>{{expense.description | limitTo: 12}}{{expense.description.length > 12 ? '...' : ''}}</td>
+				<td title={{expense.description}}>{{expense.description | limitTo: 12}}{{expense.description.length > 12 ? '...' : ''}}</td>
 			</tr>
 		</table>
 		<dir-pagination-controls on-page-change="dashboard.pageChanged(newPageNumber)"></dir-pagination-controls>

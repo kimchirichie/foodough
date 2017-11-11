@@ -64,22 +64,7 @@ function config($stateProvider) {
     'ngInject';
     $stateProvider.state('stats', {
         url: '/stats',
-        template: '<stats></stats>',
-		resolve:{
-			user: function($q, $state){
-				var defer = $q.defer();
-				Meteor.setTimeout(function(){
-					var user = Meteor.user();
-					if(!user){
-						$state.go('signin');
-					} else {
-						defer.resolve();
-					}
-				},500);
-				return defer.promise;
-			}
-		}
-
+        template: '<stats></stats>'
     });
 }
 

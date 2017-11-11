@@ -39,8 +39,7 @@ export default angular.module(name, [
  
 function config($stateProvider) {
 	'ngInject';
-	$stateProvider
-	.state('verify', {
+	$stateProvider.state('verify', {
 		url: '/verify/:token',
 		template: '<verify></verify>'
 	});
