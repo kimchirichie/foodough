@@ -1,14 +1,14 @@
 <div class="container">
 	<div class="submitform">
-		<form ng-submit="submit.record(submit.expense)">
-			<h1>Record</h1>
+		<form ng-submit="bill.record(bill.recur)">
+			<h1>Bill</h1>
 			<hr>
 			<label>Date:</label>
-			<input type="date" name="date" ng-model="submit.expense.date" required>
+			<input type="date" name="date" ng-model="bill.recur.date" required>
 			<label>Amount:</label>
-			<input type="number" name="amount" step="0.01" placeholder="9.99" ng-model="submit.expense.amount" required autofocus>
+			<input type="number" name="amount" step="0.01" placeholder="9.99" ng-model="bill.recur.amount" required autofocus>
 			<label>Category:</label>
-			<select ng-model="submit.expense.category" >
+			<select ng-model="bill.recur.category" >
 				<option>work</option>
 				<option>refund</option>
 				<option>other income</option>
@@ -30,26 +30,27 @@
 				<option>fee</option>
 			</select>
 			<label>Payment:</label>
-			<select ng-model="submit.expense.payment">
+			<select ng-model="bill.recur.payment">
 				<option>credit</option>
 				<option>debit</option>
 				<option>cash</option>
 			</select>
-			<div ng-hide="submit.transaction_id">
-				<input id="recurring" class="inline" type="checkbox" ng-model="submit.recurring">
+			<div>
+				<input id="recurring" class="inline" type="checkbox" checked="checked" disabled="disabled">
 				<label class="inline" for="recurring">Recurring?</label>
 			</div>
-			<div ng-show="submit.recurring">
-				<select ng-model="submit.frequency">
+			<div ng-show="bill.recurring">
+				<select ng-model="bill.frequency">
 					<option>monthly</option>
 					<option>bimonthly</option>
 				</select>				
 			</div>
 			<label>Description:</label>
-			<textarea placeholder="dinner at mels" ng-model="submit.expense.description"></textarea>
+			<textarea placeholder="dinner at mels" ng-model="bill.recur.description"></textarea>
+			<a class="button" ng-click="bill.pay()">Pay</a>
 			<input class="button-primary" type="submit" value="Submit" required>
-			<a class="button delete" ng-show="submit.expense._id" ng-click="submit.remove()">Delete</a>
-			<a class="button" ui-sref="dashboard({searchText:submit.searchText})">Cancle</a>
+			<a class="button delete" ng-click="bill.remove()">Delete</a>
+			<a class="button" ui-sref="dashboard()">Cancle</a>
 		</form>	
 	</div>
 </div>

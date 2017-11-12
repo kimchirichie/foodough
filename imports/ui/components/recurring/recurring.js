@@ -20,6 +20,10 @@ class Recur {
 			}
 		});
 	}
+
+	rowClick(recur) {
+		this.state.go('bill', {transaction_id : recur._id})
+	}
 }
 
 const name = 'recurring';

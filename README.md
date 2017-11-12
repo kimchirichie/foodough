@@ -10,14 +10,12 @@ First thing to remember is to install meteor and run the packagemanager before r
 $ curl https://install.meteor.com/ | sh
 $ cd path/to/project
 $ meteor npm install
-$ meteor --allow-superuser #option when running root
+$ meteor
 ```
 
-Alternatively, you may set the environment variable
+# No Nginx setup
 
-```sh
-$export METEOR_ALLOW_SUPERUSER='true'
-```
+Nginx would be the ideal way to proxy requests for the client. However if you are feeling lazy and not setting up nginx (which you should), the following allows traffic through.
 
 If the previous process of installations run without problem, next setup the iptable to forward port 80 to 3000. (run as root)
 
@@ -32,7 +30,7 @@ To make iptable rules stick, install the iptable tool (following the instruction
 # netfilter-persistent save
 ```
 
- # Depoly to production
+# Deploy to production
  
  To deploy follow the standard procedure of launching the meteor app with `meteor build`. You must have the right node version to avoid errors on build. Check official meteor for the node version corresponding to the meteor build.
  
@@ -74,7 +72,7 @@ Just like any other project the database server is external to the project. The 
 The following will run on port 27017 by default. Connect to the database through shell:
 
 ```sh
-$ meteor
+$ mongo
 ```
 
 # Backup/Restoration of Database

@@ -34,9 +34,6 @@ class Submit {
 		} else if (this.recurring) {
 			expense.frequency = this.frequency;
 			Recurring.insert(expense)
-			console.log('recurring')
-			//dont actually return in production. this is for debuggin
-			return
 		} else {
 			this.insert(expense);
 		}

@@ -8,6 +8,7 @@ import uiRouter from 'angular-ui-router';
 import template from "./foodough.html"
 
 // COMPONENTS
+import { name as Bill } from '../bill/bill';
 import { name as Header } from '../header/header';
 import { name as Footer } from '../footer/footer';
 import { name as Landing } from '../landing/landing';
@@ -33,6 +34,7 @@ const name = "foodough";
 export default angular.module(name,[
 	angularMeteor,
 	uiRouter,
+	Bill,
 	Header,
 	Footer,
 	Landing,

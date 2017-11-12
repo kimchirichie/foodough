@@ -5,13 +5,14 @@
 
 		<table>
 			<tr>
-				<th><a>Date</a></th>
+				<th>Date</th>
 				<th>Amount</th>
 				<th class="big">Category</th>
 				<th class="big">Method</th>
 				<th>Description</th>
 			</tr>
-			<tr class="expense-row" ng-show="recurring.recurring.length" ng-repeat="recur in recurring.recurring">
+			<tr class="expense-row" ng-show="recurring.recurring.length" ng-repeat="recur in recurring.recurring" ng-click="recurring.rowClick(recur)">
+				<td>{{recur.date | date: 'MMM/d'}}</td>
 				<td>{{recur.amount | currency }}</td>
 				<td class="big">{{recur.category}}</td>
 				<td class="big">{{recur.payment}}</td>

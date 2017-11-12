@@ -8,6 +8,7 @@ $black: #000000;
 $white: #FFFFFF;
 
 //Import all css files
+@import '../imports/ui/components/bill/bill.scss';
 @import '../imports/ui/components/header/header.scss';
 @import '../imports/ui/components/footer/footer.scss';
 @import '../imports/ui/components/landing/landing.scss';
