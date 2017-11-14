@@ -2,7 +2,7 @@
 	<div class="topNavBar container">
 		<a ui-sref="dashboard"/><img class="logo" src="/images/foodough.svg"></a>
 		<ul>
-			<li ng-show="header.rootScope.currentUser"><a ui-sref="recurring">recurring</a></li>
+			<li ng-show="header.rootScope.currentUser"><a ui-sref="listbills">bills</a></li>
 			<li ng-show="header.rootScope.currentUser"><a ui-sref="stats">stats</a></li>
 			<li ng-show="header.rootScope.currentUser"><a ng-click="header.signout()">sign out</a></li>
 			<li ng-hide="header.rootScope.currentUser"><a ui-sref="signin">sign in</a></li>

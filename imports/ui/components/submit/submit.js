@@ -6,7 +6,7 @@ import uiRouter from 'angular-ui-router';
 import template from './submit.html';
 import { Meteor } from 'meteor/meteor';
 import { Expenses } from '../../../api/single';
-import { Recurring } from '../../../api/recurring';
+import { Bills } from '../../../api/bills';
 
 class Submit {
 	constructor($scope, $reactive, $state, $rootScope, $stateParams){
@@ -29,23 +29,33 @@ class Submit {
 	}
 
 	record(expense){
+		// if already exisiting update it
 		if (this.expense._id){
-			this.update(expense);
-		} else if (this.recurring) {
-			expense.frequency = this.frequency;
-			Recurring.insert(expense)
+			this.updateExpense(expense);
+
+		// if bill payment insert new bill
+		} else if (this.bill) {
+			this.newBill(expense)
+
+		// all else create new expense
 		} else {
-			this.insert(expense);
+			this.newExpense(expense);
 		}
+
 		this.clear();
-		this.state.go('dashboard',{searchText:this.searchText});
+
+		if(this.bill){
+			this.state.go('listbills');
+		} else {
+			this.state.go('dashboard',{searchText:this.searchText});
+		}
 	}
 
-	insert(expense){
+	newExpense(expense){
 		Expenses.insert(expense);
 	}
 
-	update(expense){
+	updateExpense(expense){
 		if(this.expense) {
 			Expenses.update(this.expense._id, {
 				$set: {
@@ -59,7 +69,12 @@ class Submit {
 		}
 	}
 
-	remove() {
+	newBill(bill){
+		bill.frequency = this.frequency;
+		Bills.insert(bill)
+	}
+
+	deleteExpense() {
 		if (this.expense && confirm('Are you sure?')) {
 			Expenses.remove(this.expense._id);
 			this.clear();

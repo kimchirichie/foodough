@@ -4,29 +4,28 @@ import angularMeteorAuth from 'angular-meteor-auth';
 import uiRouter from 'angular-ui-router';
 import utilsPagination from 'angular-utils-pagination';
 
-import template from './recurring.html';
-// import { Expenses } from '../../../api/expenses/index';
-import { Recurring } from '../../../api/recurring/index';
+import template from './listbills.html';
+import { Bills } from '../../../api/bills';
 
-class Recur {
+class listBills {
 	constructor($scope, $reactive, $state, $stateParams){
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.state = $state;
-		this.subscribe('recurring');
+		this.subscribe('bills');
 		this.helpers({
-			recurring() {
-				return Recurring.find({});
+			bills() {
+				return Bills.find({});
 			}
 		});
 	}
 
-	rowClick(recur) {
-		this.state.go('bill', {transaction_id : recur._id})
+	rowClick(bill) {
+		this.state.go('paybill', {transaction_id : bill._id})
 	}
 }
 
-const name = 'recurring';
+const name = 'listbills';
 
 // create a module
 export default angular.module(name, [
@@ -36,15 +35,15 @@ export default angular.module(name, [
 ]).component(name, {
 	template: template.default,
 	controllerAs: name,
-	controller: Recur
+	controller: listBills
 })
 .config(config);
  
 function config($stateProvider) {
 	'ngInject';
-	$stateProvider.state('recurring', {
-		url: '/recurring',
-		template: '<recurring></recurring>',
+	$stateProvider.state('listbills', {
+		url: '/listbills',
+		template: '<listbills></listbills>',
 		resolve:{
 			user: ($auth) => {
 				return $auth.requireUser();

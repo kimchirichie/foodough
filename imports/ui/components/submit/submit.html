@@ -1,7 +1,7 @@
-<div class="container">
-	<div class="submitform">
+<div class="submitform">
+	<div class="container">
 		<form ng-submit="submit.record(submit.expense)">
-			<h1>Record</h1>
+			<h1>Make money work</h1>
 			<hr>
 			<label>Date:</label>
 			<input type="date" name="date" ng-model="submit.expense.date" required>
@@ -36,19 +36,20 @@
 				<option>cash</option>
 			</select>
 			<div ng-hide="submit.transaction_id">
-				<input id="recurring" class="inline" type="checkbox" ng-model="submit.recurring">
-				<label class="inline" for="recurring">Recurring?</label>
+				<input id="bill" class="inline" type="checkbox" ng-model="submit.bill">
+				<label class="inline" for="bill">Recurring?</label>
 			</div>
-			<div ng-show="submit.recurring">
+			<div ng-show="submit.bill">
 				<select ng-model="submit.frequency">
 					<option>monthly</option>
 					<option>bimonthly</option>
+					<option>every 2 weeks</option>
 				</select>				
 			</div>
 			<label>Description:</label>
 			<textarea placeholder="dinner at mels" ng-model="submit.expense.description"></textarea>
 			<input class="button-primary" type="submit" value="Submit" required>
-			<a class="button delete" ng-show="submit.expense._id" ng-click="submit.remove()">Delete</a>
+			<a class="button delete" ng-show="submit.expense._id" ng-click="submit.deleteExpense()">Delete</a>
 			<a class="button" ui-sref="dashboard({searchText:submit.searchText})">Cancle</a>
 		</form>	
 	</div>

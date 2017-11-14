@@ -8,16 +8,16 @@ $black: #000000;
 $white: #FFFFFF;
 
 //Import all css files
-@import '../imports/ui/components/bill/bill.scss';
 @import '../imports/ui/components/header/header.scss';
 @import '../imports/ui/components/footer/footer.scss';
 @import '../imports/ui/components/landing/landing.scss';
+@import '../imports/ui/components/listbills/listbills.scss';
+@import '../imports/ui/components/paybill/paybill.scss';
 @import '../imports/ui/components/signin/signin.scss';
 @import '../imports/ui/components/signup/signup.scss';
 @import '../imports/ui/components/dashboard/dashboard.scss';
 @import '../imports/ui/components/submit/submit.scss';
 @import '../imports/ui/components/forgot/forgot.scss';
-@import '../imports/ui/components/recurring/recurring.scss';
 @import '../imports/ui/components/password/password.scss';
 @import '../imports/ui/components/stats/stats.scss';
 

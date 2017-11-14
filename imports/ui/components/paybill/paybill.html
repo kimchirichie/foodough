@@ -1,0 +1,54 @@
+<div class="paybill">
+	<div class="container">
+		<div class="submitform">
+			<form ng-submit="paybill.updateBill()">
+				<h1>Channel your energy</h1>
+				<hr>
+				<label>Next Pay:</label>
+				<input type="date" name="date" ng-model="paybill.bill.date" required>
+				<label>Amount:</label>
+				<input type="number" name="amount" step="0.01" placeholder="9.99" ng-model="paybill.bill.amount" required autofocus>
+				<label>Category:</label>
+				<select ng-model="paybill.bill.category" >
+					<option>work</option>
+					<option>refund</option>
+					<option>other income</option>
+					<option>dining</option>
+					<option>leisure</option>
+					<option>living</option>
+					<option>transportation</option>
+					<option>fitness</option>
+					<option>education</option>
+					<option>electronics</option>
+					<option>gift</option>
+					<option>donation</option>
+					<option>groceries</option>
+					<option>coffee</option>
+					<option>alcohol</option>
+					<option>home</option>
+					<option>car</option>
+					<option>phone</option>
+					<option>fee</option>
+				</select>
+				<label>Payment:</label>
+				<select ng-model="paybill.bill.payment">
+					<option>credit</option>
+					<option>debit</option>
+					<option>cash</option>
+				</select>
+				<label>Frequency:</label>
+				<select ng-model="paybill.bill.frequency">
+					<option>monthly</option>
+					<option>bimonthly</option>
+					<option>every 2 weeks</option>
+				</select>				
+				<label>Description:</label>
+				<textarea placeholder="dinner at mels" ng-model="paybill.bill.description"></textarea>
+				<a class="button" ng-click="paybill.payBill()">Pay</a>
+				<input class="button-primary" type="submit" value="Update Bill" required>
+				<a class="button delete" ng-click="paybill.deleteBill()">Delete</a>
+				<a class="button" ui-sref="listbills">Cancle</a>
+			</form>	
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<div class="listbills">
+	<div class="container">
+		<h1>All your recurring bills</h1>
+		<hr>
+
+		<button class="button-primary add-button " ui-sref="submit">Add recurring bill</button>
+
+		<table>
+			<tr>
+				<th class="big">Frequency</th>
+				<th>Date</th>
+				<th>Amount</th>
+				<th>Description</th>
+			</tr>
+			<tr class="expense-row" ng-show="listbills.bills.length" ng-repeat="bill in listbills.bills" ng-click="listbills.rowClick(bill)">
+				<td class="big">{{bill.frequency}}</td>
+				<td>{{bill.date | date: 'MMM/d'}}</td>
+				<td>{{bill.amount | currency }}</td>
+				<td title={{bill.description}}>{{bill.description | limitTo: 12}}{{bill.description.length > 12 ? '...' : ''}}</td>
+			</tr>
+		</table>
+		<span class="empty" ng-hide="listbills.bills.length">
+			<p><b>no recurring bills yet.</b> submit one</p>
+			<a class="button" ui-sref="submit">here</a>
+		</span>
+	</div>
+</div>
