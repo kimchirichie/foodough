@@ -12,6 +12,7 @@ class listBills {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.state = $state;
+		this.today = new Date();
 		this.subscribe('bills');
 		this.helpers({
 			bills() {

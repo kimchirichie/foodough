@@ -28,6 +28,7 @@ class PayBill {
 			var rosetta = {
 				'monthly':[1,'months'],
 				'bimonthly':[15,'days'],
+				'quarterly':[4,'months'],
 				'every 2 weeks': [2,'weeks']
 			};
 			// hopefully key exists

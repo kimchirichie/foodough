@@ -12,9 +12,9 @@
 				<th>Amount</th>
 				<th>Description</th>
 			</tr>
-			<tr class="expense-row" ng-show="listbills.bills.length" ng-repeat="bill in listbills.bills" ng-click="listbills.rowClick(bill)">
+			<tr class="expense-row" ng-show="listbills.bills.length" ng-repeat="bill in listbills.bills | orderBy: 'date'" ng-click="listbills.rowClick(bill)">
 				<td class="big">{{bill.frequency}}</td>
-				<td>{{bill.date | date: 'MMM/d'}}</td>
+				<td ng-class="{'red': bill.date < listbills.today}">{{bill.date | date: 'MMM/d'}}</td>
 				<td>{{bill.amount | currency }}</td>
 				<td title={{bill.description}}>{{bill.description | limitTo: 12}}{{bill.description.length > 12 ? '...' : ''}}</td>
 			</tr>

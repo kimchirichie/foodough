@@ -4,31 +4,33 @@
 			<form ng-submit="paybill.updateBill()">
 				<h1>Channel your energy</h1>
 				<hr>
-				<label>Next Pay:</label>
+				<label>Next paying date:</label>
 				<input type="date" name="date" ng-model="paybill.bill.date" required>
 				<label>Amount:</label>
 				<input type="number" name="amount" step="0.01" placeholder="9.99" ng-model="paybill.bill.amount" required autofocus>
 				<label>Category:</label>
 				<select ng-model="paybill.bill.category" >
-					<option>work</option>
-					<option>refund</option>
-					<option>other income</option>
-					<option>dining</option>
-					<option>leisure</option>
-					<option>living</option>
-					<option>transportation</option>
-					<option>fitness</option>
-					<option>education</option>
-					<option>electronics</option>
-					<option>gift</option>
-					<option>donation</option>
-					<option>groceries</option>
 					<option>coffee</option>
-					<option>alcohol</option>
-					<option>home</option>
+					<option>dining</option>
+					<option>transportation</option>
+					<option>leisure</option>
+					<option>fitness</option>
+					<option>groceries</option>
+					<option>entertainment</option>
+					<option>living</option>
+					<option>education</option>
 					<option>car</option>
 					<option>phone</option>
 					<option>fee</option>
+					<option>alcohol</option>
+					<option>electronics</option>
+					<option>gift</option>
+					<option>home</option>
+					<option>donation</option>
+					<option>insurance</option>
+					<option>work</option>
+					<option>refund</option>
+					<option>other income</option>
 				</select>
 				<label>Payment:</label>
 				<select ng-model="paybill.bill.payment">
@@ -40,6 +42,7 @@
 				<select ng-model="paybill.bill.frequency">
 					<option>monthly</option>
 					<option>bimonthly</option>
+					<option>quarterly</option>
 					<option>every 2 weeks</option>
 				</select>				
 				<label>Description:</label>
