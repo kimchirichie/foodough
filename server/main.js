@@ -5,9 +5,6 @@ import { Single } from '../imports/api/single';
 import { moment } from 'meteor/momentjs:moment';
 
 Meteor.startup(() => {
-	var email = process.env.EMAIL;
-	var password = process.env.PASSWORD;
-	process.env.MAIL_URL = 'smtps://' + email + ':' + password + '@smtp.gmail.com:465/';
 
 	Meteor.methods({
 		sendVerificationLink(){
@@ -32,7 +29,6 @@ Meteor.startup(() => {
 		},
 		getHistory(increment, quantity){
 			var incomes = ['work', 'refund', 'other income'];
-			// var start = moment().endOf(increment).subtract(quantity,increment);
 			var start = moment().startOf(increment).subtract(quantity-1,increment);
 			let userId = Meteor.userId();
 			var expenses = Expenses.find({userId:userId, date:{$gte:start.toDate()}},{sort:{date:1}}).fetch();
@@ -75,9 +71,9 @@ Meteor.startup(() => {
 				} else if (increment == 'month'){
 					startMonth = moment(expenses[j].date).month();
 					endMonth = moment().endOf(increment).month();
+					if (endMonth<startMonth) endMonth += 12;
 					index = quantity-1-(endMonth - startMonth);
 				}
-
 				if(incomes.indexOf(expenses[j].category)<0){
 					result[index].spending += expenses[j].amount;
 				} else {
@@ -85,8 +81,6 @@ Meteor.startup(() => {
 				}
 
 				if(expenses[j].category) result[index][expenses[j].category] += expenses[j].amount;
-
-
 			}
 			return result;
 

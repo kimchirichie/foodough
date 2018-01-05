@@ -32,11 +32,11 @@
 				<option>other income</option>
 			</select>
 			<label>Payment:</label>
-			<select ng-model="submit.expense.payment">
-				<option>credit</option>
-				<option>debit</option>
-				<option>cash</option>
-			</select>
+			<div>
+				<label class="payment"><input class="payment" type="radio" ng-model="submit.expense.payment" value="credit">credit</label>
+				<label class="payment"><input class="payment" type="radio" ng-model="submit.expense.payment" value="debit">debit</label>
+				<label class="payment"><input class="payment" type="radio" ng-model="submit.expense.payment" value="cash">cash</label>
+			</div>
 			<div ng-hide="submit.transaction_id">
 				<input id="bill" class="inline" type="checkbox" ng-model="submit.bill">
 				<label class="inline" for="bill">Recurring?</label>

@@ -1,6 +1,6 @@
 <div class="listbills">
 	<div class="container">
-		<h1>All your recurring bills</h1>
+		<h1>Get Paid!</h1>
 		<hr>
 
 		<button class="button-primary add-button " ui-sref="submit">Add recurring bill</button>
@@ -15,7 +15,7 @@
 			<tr class="expense-row" ng-show="listbills.bills.length" ng-repeat="bill in listbills.bills | orderBy: 'date'" ng-click="listbills.rowClick(bill)">
 				<td class="big">{{bill.frequency}}</td>
 				<td ng-class="{'red': bill.date < listbills.today}">{{bill.date | date: 'MMM/d'}}</td>
-				<td>{{bill.amount | currency }}</td>
+				<td ng-class="{'green': listbills.income.indexOf(bill.category)>-1}">{{bill.amount | currency }}</td>
 				<td title={{bill.description}}>{{bill.description | limitTo: 12}}{{bill.description.length > 12 ? '...' : ''}}</td>
 			</tr>
 		</table>

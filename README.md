@@ -77,18 +77,37 @@ $ mongo
 
 # Backup/Restoration of Database
  
-To backup the collections:
+To backup the `foodough` collections into `/foodough/dump`:
 
 ```sh
-$ mongodump -h 127.0.0.1 --port 3001 -d meteor
+$ mongodump -d foodough -o /foodough/dump
 ```
 
-This will create a 'dump' directory inside the current folder. To recover the collections using this dump:
+The host ip and port can be specified with `-h 127.0.0.1:3001`. Default port is 27017 This will create a 'dump' directory inside the current folder. To recover the collections using this dump:
 
 ```sh
-$ mongorestore -h 127.0.0.1 --port 3001 -d meteor dump/meteor
+$ mongorestore -d foodough dump/meteor
 ```
 
 This should restore the database if run successfully.
 
 By migrating the files inside here, you will be able to recover the data stored locally.
+
+# Automated daily backup
+
+To automate the backup procedure, create a bash script of such:
+
+```sh
+#!/bin/sh
+DIR=`date +%m%d%y`
+DEST=/foodough/db_backup/$DIR
+mkdir $DEST
+mongodump -h 127.0.0.1 -d foodough -o $DEST
+```
+
+then put the cronjob to work:
+
+```
+$ sudo crontab -e
+* 0 * * * /bin/sh /foodough/backup.sh
+```

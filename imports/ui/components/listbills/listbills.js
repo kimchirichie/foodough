@@ -13,6 +13,7 @@ class listBills {
 		$reactive(this).attach($scope);
 		this.state = $state;
 		this.today = new Date();
+		this.income = ['work','refund','other income']
 		this.subscribe('bills');
 		this.helpers({
 			bills() {
