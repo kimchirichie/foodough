@@ -53,11 +53,10 @@ Several secure variables are required to operate the database and the emailing. 
 ```sh
 $ nano ~/.bashrc
 ...
-export MONGO_URL='mongodb://localhost:27017/meteor'
-export ROOT_URL='http://money.kimchirichie.com'
-export PORT='3000'
-export EMAIL='myemail@gmail.com'
-export PASSWORD='mypw'
+export MONGO_URL="mongodb://localhost:27017/foodough"
+export ROOT_URL="http://money.kimchirichie.com"
+export MAIL_URL="smtps://foodoughbot@gmail.com:<my_password>@smtp.gmail.com:465/"
+export PORT=3000
 ```
 
 # Mongo DB
