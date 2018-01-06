@@ -8,6 +8,8 @@ Meteor.startup(() => {
 	BrowserPolicy.content.allowSameOriginForAll();
 	BrowserPolicy.content.allowOriginForAll('http://meteor.local');
 	BrowserPolicy.content.allowOriginForAll('https://meteor.local');
+	BrowserPolicy.content.allowOriginForAll('http://localhost:12712');
+	BrowserPolicy.content.allowOriginForAll('http://money.kimchirichie.com');
 	BrowserPolicy.content.allowOriginForAll('https://money.kimchirichie.com');
 	BrowserPolicy.content.allowOriginForAll('https://fonts.gstatic.com');
 	BrowserPolicy.content.allowEval();
