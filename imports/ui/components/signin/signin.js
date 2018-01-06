@@ -18,7 +18,7 @@ class Signin {
 		this.loading = true;
 		Meteor.loginWithPassword(email, pass, function(error){
 			if (error){
-				Bert.alert(error.reason, 'danger', 'growl-top-right');
+				Bert.alert(error.reason, 'danger');
 				this.timeout(function(){this.loading = false;}.bind(this), 1300);
 			} else {
 				this.state.go('dashboard');
