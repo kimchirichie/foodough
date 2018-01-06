@@ -3,9 +3,13 @@ import { Expenses } from '../imports/api/expenses';
 import { Bills } from '../imports/api/bills';
 import { Single } from '../imports/api/single';
 import { moment } from 'meteor/momentjs:moment';
+import { WebApp } from 'meteor/webapp';
 
 Meteor.startup(() => {
-
+	WebApp.rawConnectHandlers.use(function(req, res, next) {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		return next();
+	});
 	Meteor.methods({
 		sendVerificationLink(){
 			let userId = Meteor.userId();
