@@ -5,7 +5,13 @@ import { Single } from '../imports/api/single';
 import { moment } from 'meteor/momentjs:moment';
 
 Meteor.startup(() => {
-
+	BrowserPolicy.content.allowSameOriginForAll();
+	BrowserPolicy.content.allowOriginForAll('http://meteor.local');
+	BrowserPolicy.content.allowOriginForAll('https://meteor.local');
+	BrowserPolicy.content.allowOriginForAll('https://money.kimchirichie.com');
+	BrowserPolicy.content.allowOriginForAll('https://fonts.gstatic.com');
+	BrowserPolicy.content.allowEval();
+	BrowserPolicy.framing.disallow();
 	Meteor.methods({
 		sendVerificationLink(){
 			let userId = Meteor.userId();
