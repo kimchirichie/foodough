@@ -13,23 +13,6 @@ $ meteor npm install
 $ meteor
 ```
 
-# No Nginx setup
-
-Nginx would be the ideal way to proxy requests for the client. However if you are feeling lazy and not setting up nginx (which you should), the following allows traffic through.
-
-If the previous process of installations run without problem, next setup the iptable to forward port 80 to 3000. (run as root)
-
-```sh
-# iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
-```
-
-To make iptable rules stick, install the iptable tool (following the instructions of [sticky iptable])
-
-```sh
-# apt-get install iptables-persistent
-# netfilter-persistent save
-```
-
 # Deploy to production
  
  To deploy follow the standard procedure of launching the meteor app with `meteor build`. You must have the right node version to avoid errors on build. Check official meteor for the node version corresponding to the meteor build.
@@ -110,3 +93,44 @@ then put the cronjob to work:
 $ sudo crontab -e
 * 0 * * * /bin/sh /foodough/backup.sh
 ```
+
+# HTTPS with nginx ssl
+
+
+ACME.sh is a free Automated Certificate Management Environment that registers certificates through Let's Encrypt Certificate Authority. To install run:
+
+```sh
+# curl https://get.acme.sh | sh
+```
+
+
+To simplify setup, we use standalone method of registering the domain to our IP. Remembering that the standalone procedure requires port 80 to be open, we simply use `--httpport` to specify an alternate port:
+
+```sh
+$ sudo su
+# service nginx stop
+# acme.sh --issue --standalone --httpport 88 -d example.com -d www.example.com
+# service nginx start
+```
+
+which will store the generated files in `~/.acme.sh/example.com/`. Copy the folder into `/var/www/cert/` and change permissions. Proceed to specify the cert and key paths in `nginx.conf` reference guides to [setup nginx ssl](http://nginx.org/en/docs/http/configuring_https_servers.html) and [forward http to https](https://www.bjornjohansen.no/redirect-to-https-with-nginx). Then reload nginx server
+
+```sh
+# cp -r ~/.acme.sh/example.com /var/www/cert/
+# chmod 660 -r /var/www/cert/example.com
+...
+    ##modify nginx.conf
+...
+# service nginx reload
+```
+
+if the setup was successful, nginx will now be using SSL (TLS) to encrypt http communications. However this environment does not renew the certificate automatically. To setup auto-renew run the acme script again
+
+```sh
+acme.sh --install-cert -d example.com
+  --key-file       /var/www/cert/example.com/example.com.key
+  --fullchain-file /var/www/cert/example.com/fullchain.cer
+  --reloadcmd     "service nginx force-reload"
+```
+
+This will auto-renew the certificate every 60 days by default.
