@@ -39,7 +39,7 @@ Meteor.startup(() => {
 			var result = new Array(quantity);
 
 			for(var i=0; i<quantity; i++){
-				var date=start.clone().format();
+				var date=increment=="month"?start.clone().format("MMM"):start.clone().format();
 				
 				result[i]={
 					date:date,
@@ -50,6 +50,8 @@ Meteor.startup(() => {
 					living:0,
 					transportation:0,
 					fitness:0,
+					fashion:0,
+					accomodation:0,
 					education:0,
 					electronics:0,
 					gift:0,
@@ -62,9 +64,6 @@ Meteor.startup(() => {
 					phone:0,
 					fee:0
 				};
-
-
-
 				start.add(1,increment)
 			}
 
@@ -86,6 +85,7 @@ Meteor.startup(() => {
 
 				if(expenses[j].category) result[index][expenses[j].category] += expenses[j].amount;
 			}
+			console.log(result)
 			return result;
 
 		},

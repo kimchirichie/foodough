@@ -43,11 +43,12 @@
 					<option>monthly</option>
 					<option>bimonthly</option>
 					<option>quarterly</option>
+					<option>every week</option>
 					<option>every 2 weeks</option>
 				</select>				
 				<label>Description:</label>
 				<textarea placeholder="dinner at mels" ng-model="paybill.bill.description"></textarea>
-				<a class="button" ng-click="paybill.payBill()">Pay</a>
+				<a class="button" ng-click="paybill.payBill()">Process</a>
 				<input class="button-primary" type="submit" value="Update Bill" required>
 				<a class="button delete" ng-click="paybill.deleteBill()">Delete</a>
 				<a class="button" ui-sref="listbills">Cancle</a>

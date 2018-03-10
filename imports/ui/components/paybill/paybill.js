@@ -29,6 +29,7 @@ class PayBill {
 				'monthly':[1,'months'],
 				'bimonthly':[15,'days'],
 				'quarterly':[4,'months'],
+				'every week': [1,'weeks'],
 				'every 2 weeks': [2,'weeks']
 			};
 			// hopefully key exists
