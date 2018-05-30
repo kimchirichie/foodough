@@ -20,56 +20,48 @@
 				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.spending | currency}}</td>
 			</tr>
 			<tr>
+				<td class="text">Coffee</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.coffee | currency}}</td>
+			</tr>
+			<tr>
 				<td class="text">Dining</td>
 				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.dining | currency}}</td>
-			</tr>
-			<tr>
-				<td class="text">Leisure</td>
-				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.leisure | currency}}</td>
-			</tr>
-			<tr>
-				<td class="text">Living</td>
-				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.living | currency}}</td>
 			</tr>
 			<tr>
 				<td class="text">Transport</td>
 				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.transportation | currency}}</td>
 			</tr>
 			<tr>
+				<td class="text">Leisure</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.leisure | currency}}</td>
+			</tr>
+			<tr>
 				<td class="text">Fitness</td>
 				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.fitness | currency}}</td>
 			</tr>
 			<tr>
-				<td class="text">Education</td>
-				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.education | currency}}</td>
+				<td class="text">Fashion</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.fashion | currency}}</td>
 			</tr>
 			<tr>
-				<td class="text">Electronics</td>
-				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.electronics | currency}}</td>
-			</tr>
-			<tr>
-				<td class="text">Gift</td>
-				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.gift | currency}}</td>
-			</tr>
-			<tr>
-				<td class="text">Donation</td>
-				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.donation | currency}}</td>
+				<td class="text">Accomodation</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.accomodation | currency}}</td>
 			</tr>
 			<tr>
 				<td class="text">Groceries</td>
 				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.groceries | currency}}</td>
 			</tr>
 			<tr>
-				<td class="text">Coffee</td>
-				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.coffee | currency}}</td>
+				<td class="text">Entertainment</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.entertainment | currency}}</td>
 			</tr>
 			<tr>
-				<td class="text">Alcohol</td>
-				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.alcohol | currency}}</td>
+				<td class="text">Living</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.living | currency}}</td>
 			</tr>
 			<tr>
-				<td class="text">Home</td>
-				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.home | currency}}</td>
+				<td class="text">Education</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.education | currency}}</td>
 			</tr>
 			<tr>
 				<td class="text">Car</td>
@@ -83,9 +75,30 @@
 				<td class="text">Fee</td>
 				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.fee | currency}}</td>
 			</tr>
-
-
-
+			<tr>
+				<td class="text">Alcohol</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.alcohol | currency}}</td>
+			</tr>
+			<tr>
+				<td class="text">Electronics</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.electronics | currency}}</td>
+			</tr>
+			<tr>
+				<td class="text">Gift</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.gift | currency}}</td>
+			</tr>
+			<tr>
+				<td class="text">Home</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.home | currency}}</td>
+			</tr>
+			<tr>
+				<td class="text">Donation</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.donation | currency}}</td>
+			</tr>
+			<tr>
+				<td class="text">Insurance</td>
+				<td ng-repeat="col in stats.result track by $index" ng-class="{big: stats.result.length-$index>stats.mobileCap}">{{col.insurance | currency}}</td>
+			</tr>
 		</table>
 	</div>
 </div>

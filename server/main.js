@@ -45,24 +45,26 @@ Meteor.startup(() => {
 					date:date,
 					earning:0,
 					spending:0,
+					coffee:0,
 					dining:0,
-					leisure:0,
-					living:0,
 					transportation:0,
+					leisure:0,
 					fitness:0,
 					fashion:0,
 					accomodation:0,
-					education:0,
-					electronics:0,
-					gift:0,
-					donation:0,
 					groceries:0,
-					coffee:0,
-					alcohol:0,
-					home:0,
+					entertainment:0,
+					living:0,
+					education:0,
 					car:0,
 					phone:0,
-					fee:0
+					fee:0,
+					alcohol:0,
+					electronics:0,
+					gift:0,
+					home:0,
+					donation:0,
+					insurance:0,
 				};
 				start.add(1,increment)
 			}
@@ -85,9 +87,7 @@ Meteor.startup(() => {
 
 				if(expenses[j].category) result[index][expenses[j].category] += expenses[j].amount;
 			}
-			console.log(result)
 			return result;
-
 		},
 	});
 });
